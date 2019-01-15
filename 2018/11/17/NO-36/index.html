@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.5.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.5.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.5.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="NOIp 2015 D2T2  子串题目描述有两个仅包含小写英文字母的字符串 AA 和 BB。 现在要从字符串 AA 中取出 kk 个互不重叠的非空子串，然后把这 kk 个子串按照其在字符串 AA 中出现的顺序依次连接起来得到一个新的字符串。请问有多少种方案可以使得这个新串与字符串 BB 相等？ 注意：子串取出的位置不同也认为是不同的方案。 输入输出格式输入格式： 第一行是三个正整数 n,m,k，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="bef-&gt; NO.36">
+<meta property="og:url" content="http://yoursite.com/2018/11/17/NO-36/index.html">
+<meta property="og:site_name" content="RBZ&#39;s blog">
+<meta property="og:description" content="NOIp 2015 D2T2  子串题目描述有两个仅包含小写英文字母的字符串 AA 和 BB。 现在要从字符串 AA 中取出 kk 个互不重叠的非空子串，然后把这 kk 个子串按照其在字符串 AA 中出现的顺序依次连接起来得到一个新的字符串。请问有多少种方案可以使得这个新串与字符串 BB 相等？ 注意：子串取出的位置不同也认为是不同的方案。 输入输出格式输入格式： 第一行是三个正整数 n,m,k，">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2018/11/17/NO-36/Images/1830.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/17/NO-36/Images/1541402191242.png">
+<meta property="og:updated_time" content="2018-11-17T08:37:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="bef-&gt; NO.36">
+<meta name="twitter:description" content="NOIp 2015 D2T2  子串题目描述有两个仅包含小写英文字母的字符串 AA 和 BB。 现在要从字符串 AA 中取出 kk 个互不重叠的非空子串，然后把这 kk 个子串按照其在字符串 AA 中出现的顺序依次连接起来得到一个新的字符串。请问有多少种方案可以使得这个新串与字符串 BB 相等？ 注意：子串取出的位置不同也认为是不同的方案。 输入输出格式输入格式： 第一行是三个正整数 n,m,k，">
+<meta name="twitter:image" content="http://yoursite.com/2018/11/17/NO-36/Images/1830.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/11/17/NO-36/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>bef-> NO.36 | RBZ's blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">RBZ's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">A OIer</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Suche</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/17/NO-36/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="RBZ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RBZ's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">bef-> NO.36
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+		
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2018-11-17 00:00:00 / Updated at: 16:37:52" itemprop="dateCreated datePublished" datetime="2018-11-17T00:00:00+08:00">2018-11-17</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="NOIp-2015-D2T2-子串"><a href="#NOIp-2015-D2T2-子串" class="headerlink" title="NOIp 2015 D2T2  子串"></a>NOIp 2015 D2T2  子串</h2><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>有两个仅包含小写英文字母的字符串 AA 和 BB。</p>
+<p>现在要从字符串 AA 中取出 kk 个互不重叠的非空子串，然后把这 kk 个子串按照其在字符串 AA 中出现的顺序依次连接起来得到一个新的字符串。请问有多少种方案可以使得这个新串与字符串 BB 相等？</p>
+<p>注意：子串取出的位置不同也认为是不同的方案。</p>
+<h2 id="输入输出格式"><a href="#输入输出格式" class="headerlink" title="输入输出格式"></a>输入输出格式</h2><p>输入格式：</p>
+<p>第一行是三个正整数 n,m,k，分别表示字符串 AA 的长度，字符串 BB 的长度，以及问题描述中所提到的 kk，每两个整数之间用一个空格隔开。</p>
+<p>第二行包含一个长度为 nn 的字符串，表示字符串 AA。</p>
+<p>第三行包含一个长度为 mm 的字符串，表示字符串 BB。</p>
+<p>输出格式：</p>
+<p>一个整数，表示所求方案数。</p>
+<p>由于答案可能很大，所以这里要求输出答案对 1000000007 取模的结果。</p>
+<h2 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h2><p>输入样例#1：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">6 3 1 </span><br><span class="line">aabaab </span><br><span class="line">aab</span><br></pre></td></tr></table></figure>
+<p>输出样例#1：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2</span><br></pre></td></tr></table></figure>
+<p>输入样例#2：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">6 3 2 </span><br><span class="line">aabaab </span><br><span class="line">aab</span><br></pre></td></tr></table></figure>
+<p>输出样例#2：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">7</span><br></pre></td></tr></table></figure>
+<p>输入样例#3：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">6 3 3 </span><br><span class="line">aabaab </span><br><span class="line">aab</span><br></pre></td></tr></table></figure>
+<p>输出样例#3：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">7</span><br></pre></td></tr></table></figure>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p><img src="Images/1830.png" alt="img"><br>对于所有 10 组数据:</p>
+<script type="math/tex; mode=display">
+1≤n≤1000,1≤m≤200,1≤k≤m</script><h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><p>一道非常好的计数dp题。</p>
+<p>可惜我用将近两个小时设计出状态写出转移只有20分， 离正解很接近，觉得非常可惜。</p>
+<p>对母串中的那一位记录选或不选才好转移。</p>
+<p>其实我一开始思路是这样的：</p>
+<script type="math/tex; mode=display">
+f(i,j,k)</script><p>表示母串中用k个子串匹配到模式串第j位的方案数。</p>
+<p>转移：</p>
+<p>如果</p>
+<script type="math/tex; mode=display">
+A_i = B_j</script><script type="math/tex; mode=display">
+f(i,j,k) = \sum_{L}f(i-L,j-L,k-1) + f(i-1,j,k)</script><p>不相等就去掉前面的求和式，复杂度</p>
+<script type="math/tex; mode=display">
+O(nm^2k+m^3)</script><p>是可以获得70分的好成绩的。</p>
+<p><img src="Images/1541402191242.png" alt="1541402191242"></p>
+<p>上面那个说的就是我最初能做的。</p>
+<p>然后我觉得很麻烦，就猜这个东西有继承性，然后只需要关注前一位，像扫描线（或者说前缀和？）一样</p>
+<p>猜成：</p>
+<script type="math/tex; mode=display">
+f(i,j,k) = f(i-1,j-1,k) + f(i-1,j-1,k-1) + f(i-1,j,k)</script><p>很可惜，离正解很接近，但是是错误的，跑样例输出状态值然后自己算就能明白为什么，前一位能不能选不一定是继承所有的方案。</p>
+<p>然后变成了20pts。。。考场上一定要写有把握有理有据的算法。</p>
+<p>然而我居然没想到常用套路：加一维0/1表示母串当前位选不选，那样我就发现可以转移了。。</p>
+<p>首先假设母串当前位不选，那么不管枚举到的匹配对是否相等，都有</p>
+<script type="math/tex; mode=display">
+f(i,j,k,0) = f(i-1,j,k,0) + f(i-1,j,k,1)</script><p>考虑当前位相等并且选择母串当前位匹配模式串的话（用递推那种分类讨论的思想！）</p>
+<ul>
+<li>当前匹配位独立出一个子串。（上一位不一定选）</li>
+<li>当前匹配位与上一个子串合并（要求上一位必须选）。</li>
+</ul>
+<script type="math/tex; mode=display">
+f(i,j,k,1) = f(i-1,j-1,k-1,0) + f(i-1,j-1,k-1,1) + f(i-1,j-1,k,1)</script><p>滚动数组后可AC，复杂度</p>
+<script type="math/tex; mode=display">
+O(nmk)</script><p>Code:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 1005</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxk 205</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mod 1000000007</span></span><br><span class="line"><span class="keyword">int</span> n , m , k;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> f[<span class="number">2</span>][maxk][maxk][<span class="number">2</span>];</span><br><span class="line"><span class="keyword">char</span> s1[maxn] , s2[maxn];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;n,&amp;m,&amp;k);</span><br><span class="line">	getchar();</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%s"</span>,s1+<span class="number">1</span>);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%s"</span>,s2+<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt;= n ; ++i)&#123;</span><br><span class="line">		<span class="keyword">int</span> now = i &amp; <span class="number">1</span>;</span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">memset</span>(f[now],<span class="number">0</span>,<span class="keyword">sizeof</span>(f[now]));</span><br><span class="line">		f[now^<span class="number">1</span>][<span class="number">0</span>][<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span> ; j &lt;= m ; ++j)&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> t = <span class="number">1</span> ; t &lt;= k ; ++t)&#123;</span><br><span class="line">				<span class="keyword">if</span>(s1[i] == s2[j])&#123;</span><br><span class="line">					(f[now][j][t][<span class="number">1</span>] = f[now^<span class="number">1</span>][j<span class="number">-1</span>][t<span class="number">-1</span>][<span class="number">0</span>] + f[now^<span class="number">1</span>][j<span class="number">-1</span>][t][<span class="number">1</span>] + f[now^<span class="number">1</span>][j<span class="number">-1</span>][t<span class="number">-1</span>][<span class="number">1</span>]) %= mod;</span><br><span class="line">					(f[now][j][t][<span class="number">0</span>] = f[now^<span class="number">1</span>][j][t][<span class="number">0</span>] + f[now^<span class="number">1</span>][j][t][<span class="number">1</span>]) %= mod ;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">else</span>&#123;</span><br><span class="line">					f[now][j][t][<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">					f[now][j][t][<span class="number">0</span>] = f[now^<span class="number">1</span>][j][t][<span class="number">1</span>] + f[now^<span class="number">1</span>][j][t][<span class="number">0</span>];</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%lld"</span>,(f[n&amp;<span class="number">1</span>][m][k][<span class="number">0</span>] + f[n&amp;<span class="number">1</span>][m][k][<span class="number">1</span>]) % mod);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="NOIp-2017-D1T2-时间复杂度"><a href="#NOIp-2017-D1T2-时间复杂度" class="headerlink" title="NOIp 2017 D1T2 时间复杂度"></a>NOIp 2017 D1T2 时间复杂度</h1><h2 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h2><p>小明正在学习一种新的编程语言 A++，刚学会循环语句的他激动地写了好多程序并 给出了他自己算出的时间复杂度，可他的编程老师实在不想一个一个检查小明的程序， 于是你的机会来啦！下面请你编写程序来判断小明对他的每个程序给出的时间复杂度是否正确。</p>
+<p>A++语言的循环结构如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">F i x y</span><br><span class="line">    循环体</span><br><span class="line">E</span><br></pre></td></tr></table></figure>
+<p>其中<code>F i x y</code>表示新建变量 ii（变量 ii 不可与未被销毁的变量重名）并初始化为 xx， 然后判断 ii 和 yy 的大小关系，若 ii 小于等于 yy 则进入循环，否则不进入。每次循环结束后 ii 都会被修改成 i +1i+1，一旦 ii 大于 yy 终止循环。</p>
+<p>xx 和 yy 可以是正整数（xx 和 yy 的大小关系不定）或变量 nn。nn 是一个表示数据规模的变量，在时间复杂度计算中需保留该变量而不能将其视为常数，该数远大于 100100。</p>
+<p>“E”表示循环体结束。循环体结束时，这个循环体新建的变量也被销毁。</p>
+<p>注：本题中为了书写方便，在描述复杂度时，使用大写英文字母“O”表示通常意义下“Θ”的概念。</p>
+<h2 id="输入输出格式-1"><a href="#输入输出格式-1" class="headerlink" title="输入输出格式"></a>输入输出格式</h2><p>输入格式：</p>
+<p>输入文件第一行一个正整数 tt，表示有 tt（t \le 10t≤10）个程序需要计算时间复杂度。 每个程序我们只需抽取其中 <code>F i x y</code>和<code>E</code>即可计算时间复杂度。注意：循环结构 允许嵌套。</p>
+<p>接下来每个程序的第一行包含一个正整数 LL 和一个字符串，LL 代表程序行数，字符 串表示这个程序的复杂度，<code>O(1)</code>表示常数复杂度，<code>O(n^w)</code>表示复杂度为n^wnw，其 中w是一个小于100的正整数（输入中不包含引号），输入保证复杂度只有<code>O(1)</code>和<code>O(n^w)</code> 两种类型。</p>
+<p>接下来 LL 行代表程序中循环结构中的<code>F i x y</code>或者 <code>E</code>。 程序行若以<code>F</code>开头，表示进入一个循环，之后有空格分离的三个字符（串）<code>i x y</code>， 其中 ii 是一个小写字母（保证不为nn），表示新建的变量名，xx 和 yy 可能是正整数或 nn ，已知若为正整数则一定小于 100。</p>
+<p>程序行若以<code>E</code>开头，则表示循环体结束。</p>
+<p>输出格式：</p>
+<p>输出文件共 tt 行，对应输入的 tt 个程序，每行输出<code>Yes</code>或<code>No</code>或者<code>ERR</code>（输出中不包含引号），若程序实际复杂度与输入给出的复杂度一致则输出<code>Yes</code>，不一致则输出<code>No</code>，若程序有语法错误（其中语法错误只有: ① F 和 E 不匹配 ②新建的变量与已经存在但未被销毁的变量重复两种情况），则输出<code>ERR</code> 。</p>
+<p>注意：即使在程序不会执行的循环体中出现了语法错误也会编译错误，要输出 <code>ERR</code>。</p>
+<h2 id="输入输出样例-1"><a href="#输入输出样例-1" class="headerlink" title="输入输出样例"></a>输入输出样例</h2><p>输入样例#1：</p>
+<p>复制</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">8</span><br><span class="line">2 O(1)</span><br><span class="line">F i 1 1</span><br><span class="line">E</span><br><span class="line">2 O(n^1)</span><br><span class="line">F x 1 n</span><br><span class="line">E</span><br><span class="line">1 O(1)</span><br><span class="line">F x 1 n</span><br><span class="line">4 O(n^2)</span><br><span class="line">F x 5 n</span><br><span class="line">F y 10 n</span><br><span class="line">E</span><br><span class="line">E</span><br><span class="line">4 O(n^2)</span><br><span class="line">F x 9 n</span><br><span class="line">E</span><br><span class="line">F y 2 n</span><br><span class="line">E</span><br><span class="line">4 O(n^1)</span><br><span class="line">F x 9 n</span><br><span class="line">F y n 4</span><br><span class="line">E</span><br><span class="line">E</span><br><span class="line">4 O(1)</span><br><span class="line">F y n 4</span><br><span class="line">F x 9 n</span><br><span class="line">E</span><br><span class="line">E</span><br><span class="line">4 O(n^2)</span><br><span class="line">F x 1 n</span><br><span class="line">F x 1 10</span><br><span class="line">E</span><br><span class="line">E</span><br></pre></td></tr></table></figure>
+<p>输出样例#1：</p>
+<p>复制</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Yes</span><br><span class="line">Yes</span><br><span class="line">ERR</span><br><span class="line">Yes</span><br><span class="line">No</span><br><span class="line">Yes</span><br><span class="line">Yes</span><br><span class="line">ERR</span><br></pre></td></tr></table></figure>
+<h2 id="说明-1"><a href="#说明-1" class="headerlink" title="说明"></a>说明</h2><p>【输入输出样例解释1】</p>
+<p>第一个程序 ii 从 1 到 1 是常数复杂度。</p>
+<p>第二个程序 xx 从 1 到 nn 是 nn 的一次方的复杂度。</p>
+<p>第三个程序有一个 <code>F</code> 开启循环却没有 <code>E</code> 结束，语法错误。</p>
+<p>第四个程序二重循环，nn 的平方的复杂度。</p>
+<p>第五个程序两个一重循环，nn 的一次方的复杂度。</p>
+<p>第六个程序第一重循环正常，但第二重循环开始即终止（因为nn远大于100，100大于4）。</p>
+<p>第七个程序第一重循环无法进入，故为常数复杂度。</p>
+<p>第八个程序第二重循环中的变量 xx 与第一重循环中的变量重复，出现语法错误②，输出 <code>ERR</code>。</p>
+<p>【数据规模与约定】</p>
+<p>对于 30\%30%的数据：不存在语法错误，数据保证小明给出的每个程序的前 L/2L/2 行一定为以 <code>F</code> 开头的语句，第 L/2+1L/2+1 行至第 LL 行一定为以 EE 开头的语句，L \le 10L≤10，若 xx、yy 均 为整数，xx 一定小于 yy，且只有 yy 有可能为 nn。</p>
+<p>对于 50\%50%的数据：不存在语法错误，L \le 100L≤100，且若 xx、yy 均为整数，xx 一定小于 yy， 且只有 yy 有可能为 nn。</p>
+<p>对于 70\%70%的数据：不存在语法错误，L \le 100L≤100。</p>
+<p>对于 100\%100%的数据：L \le 100L≤100。</p>
+<h2 id="题解-1"><a href="#题解-1" class="headerlink" title="题解"></a>题解</h2><p>这道模拟题很考验代码能力，写完之后我感觉有些地方一定要注意。</p>
+<p>考虑到每年的NOIp都会有模拟题，而且去年难度（也就是本题）相当高。</p>
+<h5 id="对于大模拟，能写成函数的一定要写成函数。功能性的并且重用性高的代码一定也要写成函数。这样子就算程序会变长，但是调试会变得非常轻松！！"><a href="#对于大模拟，能写成函数的一定要写成函数。功能性的并且重用性高的代码一定也要写成函数。这样子就算程序会变长，但是调试会变得非常轻松！！" class="headerlink" title="对于大模拟，能写成函数的一定要写成函数。功能性的并且重用性高的代码一定也要写成函数。这样子就算程序会变长，但是调试会变得非常轻松！！"></a>对于大模拟，能写成函数的一定要写成函数。功能性的并且重用性高的代码一定也要写成函数。这样子就算程序会变长，但是调试会变得非常轻松！！</h5><p>讲真，一开始我注意这点的话，我可能在考场上两个小时之内切掉它，假如那样的话我就可以在顺利完成第一题的情况下写完第三题30分。第一天230的话啥都稳了（T3考场想不大出正解的感觉。。）</p>
+<p>先上一开始写的狗屁不通还得了点分的程序。</p>
+<p>Code：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 222</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 101010101</span></span><br><span class="line"><span class="keyword">int</span> t , n , comp , ans , cur_ans;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">string</span> s[maxn] , p;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">    <span class="keyword">char</span> var;</span><br><span class="line">    <span class="keyword">bool</span> valid;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">stack</span>&lt;Node&gt; st;</span><br><span class="line"><span class="keyword">bool</span> ins[maxn];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d "</span>,n);</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;p;</span><br><span class="line">    <span class="built_in">putchar</span>(<span class="number">10</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt;= n ; ++i)</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; s[i] &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">calc</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> now = <span class="number">0</span> , ans = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">while</span>(now &lt; p.length())&#123;</span><br><span class="line">        <span class="keyword">while</span>(p[now] == <span class="string">' '</span> || p[now] == <span class="string">'\n'</span>)	++now;</span><br><span class="line">        <span class="keyword">if</span>(now == p.length())	<span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">if</span>(p[now] == <span class="string">'n'</span>)	ans = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(p[now] &gt;= <span class="string">'0'</span> &amp;&amp; p[now] &lt;= <span class="string">'9'</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(ans == <span class="number">1</span>)&#123;</span><br><span class="line">                ans = p[now] - <span class="number">48</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> ans = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ++now;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">isNum</span><span class="params">(<span class="keyword">char</span> ch)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(ch == <span class="string">'n'</span> || (ch &gt;= <span class="string">'9'</span> &amp;&amp; ch &lt;= <span class="string">'0'</span>))	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">getNum</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">string</span> s , <span class="keyword">int</span>&amp; i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> x = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(s[i] == <span class="string">'n'</span>)	</span><br><span class="line">        <span class="keyword">return</span> INF;</span><br><span class="line">    <span class="keyword">while</span>(i &lt; s.length() &amp;&amp; s[i] &gt;= <span class="string">'0'</span> &amp;&amp; s[i] &lt;= <span class="string">'9'</span>)&#123;</span><br><span class="line">        x = (x &lt;&lt; <span class="number">3</span>) + (x &lt;&lt; <span class="number">1</span>) + s[i] - <span class="number">48</span>;</span><br><span class="line">        ++i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">Constant</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x != INF;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">getComplexity</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">string</span> s)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">-1</span> , x1 = <span class="number">-1</span> , x2 = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; s.length() ; ++i)&#123;</span><br><span class="line">        <span class="keyword">if</span>(isNum(s[i]))&#123;</span><br><span class="line">            <span class="keyword">if</span>(!(~x1))	x1 = getNum(s,i);</span><br><span class="line">            <span class="keyword">else</span> x2 = getNum(s,i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//	printf("%d %d\n",x1,x2);</span></span><br><span class="line">    <span class="keyword">if</span>(x1 == INF)	<span class="keyword">return</span> ans;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(Constant(x1) &amp;&amp; Constant(x2))	<span class="keyword">return</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> ans = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">isVar</span><span class="params">(<span class="keyword">char</span> ch)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(ch &gt;= <span class="number">97</span> &amp;&amp; ch &lt;= <span class="number">122</span>)	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">char</span> <span class="title">getName</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">string</span> s)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; s.length() ; ++i)</span><br><span class="line">        <span class="keyword">if</span>(isVar(s[i]))</span><br><span class="line">            <span class="keyword">return</span> s[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">Mark</span><span class="params">(<span class="keyword">char</span> var)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(ins[var])	<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    ins[var] = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">Process</span><span class="params">(<span class="keyword">int</span> num)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> cur = <span class="number">0</span> , pw = <span class="number">-1</span> , var = <span class="number">-1</span>;</span><br><span class="line">    var = getName(s[num]);</span><br><span class="line">    pw = getComplexity(s[num]);</span><br><span class="line">    <span class="keyword">int</span> k = Mark(var);</span><br><span class="line">    <span class="keyword">if</span>(!(~k))	<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">if</span>(pw == <span class="number">-1</span>)&#123;</span><br><span class="line">        st.push((Node)&#123;var,<span class="literal">false</span>&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(pw == <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(st.size() &amp;&amp; st.top().valid == <span class="literal">false</span>)	st.push((Node)&#123;var , <span class="literal">false</span>&#125;);</span><br><span class="line">        <span class="keyword">else</span> st.push((Node)&#123;var , <span class="literal">true</span>&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(pw == <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(st.size() &amp;&amp; st.top().valid == <span class="literal">false</span>)	st.push((Node)&#123;var,<span class="literal">false</span>&#125;);</span><br><span class="line">        <span class="keyword">else</span> ++cur_ans , ans = <span class="built_in">std</span>::max(ans , cur_ans) , st.push((Node)&#123;var,<span class="literal">true</span>&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    ans = <span class="built_in">std</span>::max(ans , cur_ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;<span class="comment">//Normal</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Expop</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(st.top().valid == <span class="literal">true</span>) --cur_ans;</span><br><span class="line">    ins[st.top().var] = <span class="literal">false</span>;</span><br><span class="line">    st.pop();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">getType</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">string</span> s)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; s.length() ; ++i)</span><br><span class="line">        <span class="keyword">if</span>(s[i] == <span class="string">'F'</span>)	<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(s[i] == <span class="string">'E'</span>)	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> num = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(num &lt;= n)&#123;</span><br><span class="line">        <span class="keyword">int</span> type = getType(s[num]) , judge = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(type == <span class="number">1</span>)</span><br><span class="line">            judge = Process(num);</span><br><span class="line">        <span class="keyword">else</span> Expop();</span><br><span class="line">        <span class="keyword">if</span>(judge == <span class="number">-1</span>)	&#123;<span class="comment">// from Process</span></span><br><span class="line">            ans = <span class="number">-1</span> ; <span class="keyword">return</span> ;</span><br><span class="line">        &#125;</span><br><span class="line">        ++num;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(!st.empty())	ans = <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;t);</span><br><span class="line">    <span class="keyword">while</span>(~(--t))&#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">memset</span>(ins,<span class="literal">false</span>,<span class="keyword">sizeof</span>(ins));</span><br><span class="line">        <span class="keyword">while</span>(!st.empty())	st.pop();</span><br><span class="line">        ans = cur_ans = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cin</span>&gt;&gt;p;</span><br><span class="line">        getchar();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt;= n ; ++i)</span><br><span class="line">            getline(<span class="built_in">std</span>::<span class="built_in">cin</span>,s[i]);</span><br><span class="line">        comp = calc();</span><br><span class="line">        solve();</span><br><span class="line">        <span class="keyword">if</span>(ans == <span class="number">-1</span>)&#123;</span><br><span class="line">            <span class="built_in">puts</span>(<span class="string">"ERR"</span>);</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(ans == comp)&#123;</span><br><span class="line">            <span class="built_in">puts</span>(<span class="string">"Yes"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">puts</span>(<span class="string">"No"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>考场上要头脑清醒。。</p>
+<p>上面那个代码每一个函数都是错的。</p>
+<p>然后上正确的代码，调试时间并不长，在考场有大样例的情况下最起码能得到80以上的分数。</p>
+<p>Code：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 2222</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 101010101</span></span><br><span class="line"><span class="keyword">int</span> t , n , comp , ans , cur_ans;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">string</span> s[maxn] , p;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">	<span class="keyword">char</span> var;</span><br><span class="line">	<span class="keyword">bool</span> valid , is_PWD;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">stack</span>&lt;Node&gt; st;</span><br><span class="line"><span class="keyword">bool</span> ins[maxn];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d "</span>,n);</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;p;</span><br><span class="line">	<span class="built_in">putchar</span>(<span class="number">10</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt;= n ; ++i)</span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; s[i] &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">getNum</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">string</span> s , <span class="keyword">int</span>&amp; i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> x = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span>(s[i] == <span class="string">'n'</span>)	</span><br><span class="line">		<span class="keyword">return</span> INF;</span><br><span class="line">	<span class="keyword">while</span>(i &lt; s.length() &amp;&amp; s[i] &gt;= <span class="string">'0'</span> &amp;&amp; s[i] &lt;= <span class="string">'9'</span>)&#123;</span><br><span class="line">		x = (x &lt;&lt; <span class="number">3</span>) + (x &lt;&lt; <span class="number">1</span>) + s[i] - <span class="number">48</span>;</span><br><span class="line">		++i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">isNum</span><span class="params">(<span class="keyword">char</span> ch)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(ch == <span class="string">'n'</span> || (ch &lt;= <span class="string">'9'</span> &amp;&amp; ch &gt;= <span class="string">'0'</span>))	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">Constant</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x != INF;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">calc</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> now = <span class="number">0</span> , ans = <span class="number">-1</span> , x1 = <span class="number">-1</span> , x2 = <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; p.length() ; ++i)&#123;</span><br><span class="line">		<span class="keyword">if</span>(isNum(p[i]))&#123;</span><br><span class="line">			<span class="keyword">if</span>(!(~x1))	x1 = getNum(p,i);</span><br><span class="line">			<span class="keyword">else</span> x2 = getNum(p,i);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(Constant(x1))	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">return</span> x2;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">getComplexity</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">string</span> s)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> ans = <span class="number">-1</span> , x1 = <span class="number">-1</span> , x2 = <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; s.length() ; ++i)&#123;</span><br><span class="line">		<span class="keyword">if</span>(isNum(s[i]))&#123;</span><br><span class="line">			<span class="keyword">if</span>(!(~x1))	x1 = getNum(s,i);</span><br><span class="line">			<span class="keyword">else</span> x2 = getNum(s,i);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(x1 &gt; x2)	<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">if</span>(x1 == INF &amp;&amp; x2 == INF)	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span>(Constant(x1) &amp;&amp; Constant(x2))	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">return</span> ans = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">isVar</span><span class="params">(<span class="keyword">char</span> ch)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(ch &gt;= <span class="number">97</span> &amp;&amp; ch &lt;= <span class="number">122</span>)	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">char</span> <span class="title">getName</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">string</span> s)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; s.length() ; ++i)</span><br><span class="line">		<span class="keyword">if</span>(isVar(s[i]))</span><br><span class="line">			<span class="keyword">return</span> s[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">Mark</span><span class="params">(<span class="keyword">char</span> var)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(ins[var])	<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	ins[var] = <span class="literal">true</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">Process</span><span class="params">(<span class="keyword">int</span> num)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> cur = <span class="number">0</span> , pw = <span class="number">-1</span> , var = <span class="number">-1</span>;</span><br><span class="line">	var = getName(s[num]);</span><br><span class="line">	pw = getComplexity(s[num]);</span><br><span class="line">	<span class="keyword">int</span> k = Mark(var);</span><br><span class="line">	<span class="keyword">if</span>(!(~k))	<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">if</span>(pw == <span class="number">-1</span>)&#123;</span><br><span class="line">		st.push((Node)&#123;var,<span class="literal">false</span>,<span class="literal">false</span>&#125;);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(pw == <span class="number">0</span>)&#123;</span><br><span class="line">		<span class="keyword">if</span>(st.size() &amp;&amp; st.top().valid == <span class="literal">false</span>)	st.push((Node)&#123;var , <span class="literal">false</span> , <span class="literal">false</span>&#125;);</span><br><span class="line">		<span class="keyword">else</span> st.push((Node)&#123;var , <span class="literal">true</span> , <span class="literal">false</span>&#125;);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(pw == <span class="number">1</span>)&#123;</span><br><span class="line">		<span class="keyword">if</span>(st.size() &amp;&amp; st.top().valid == <span class="literal">false</span>)	st.push((Node)&#123;var,<span class="literal">false</span>,<span class="literal">false</span>&#125;);</span><br><span class="line">		<span class="keyword">else</span> ++cur_ans , ans = <span class="built_in">std</span>::max(ans , cur_ans) , st.push((Node)&#123;var,<span class="literal">true</span>,<span class="literal">true</span>&#125;);</span><br><span class="line">	&#125;</span><br><span class="line">	ans = <span class="built_in">std</span>::max(ans , cur_ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;<span class="comment">//Normal</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">Expop</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(st.empty())	<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">if</span>(st.top().valid == <span class="literal">true</span> &amp;&amp; st.top().is_PWD == <span class="literal">true</span>) --cur_ans;</span><br><span class="line">	ins[st.top().var] = <span class="literal">false</span>;</span><br><span class="line">	st.pop();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">getType</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">string</span> s)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; s.length() ; ++i)</span><br><span class="line">		<span class="keyword">if</span>(s[i] == <span class="string">'F'</span>)	<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(s[i] == <span class="string">'E'</span>)	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> num = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(num &lt;= n)&#123;</span><br><span class="line">		<span class="keyword">int</span> type = getType(s[num]) , judge = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">if</span>(type == <span class="number">1</span>)</span><br><span class="line">			judge = Process(num);</span><br><span class="line">		<span class="keyword">else</span> judge = Expop();</span><br><span class="line">		<span class="keyword">if</span>(judge == <span class="number">-1</span>)	&#123;<span class="comment">// from Process</span></span><br><span class="line">			ans = <span class="number">-1</span> ; <span class="keyword">return</span> ;</span><br><span class="line">		&#125;</span><br><span class="line">		++num;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(!st.empty())	ans = <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="comment">//	freopen("time.in","r",stdin);</span></span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;t);</span><br><span class="line">	<span class="keyword">while</span>(~(--t))&#123;</span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">memset</span>(ins,<span class="literal">false</span>,<span class="keyword">sizeof</span>(ins));</span><br><span class="line">		<span class="keyword">while</span>(!st.empty())	st.pop();</span><br><span class="line">		ans = cur_ans = <span class="number">0</span>;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">cin</span>&gt;&gt;p;</span><br><span class="line">		getchar();</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt;= n ; ++i)</span><br><span class="line">			getline(<span class="built_in">std</span>::<span class="built_in">cin</span>,s[i]);</span><br><span class="line">		comp = calc();</span><br><span class="line">		solve();</span><br><span class="line"><span class="comment">//		print();</span></span><br><span class="line">		<span class="keyword">if</span>(ans == <span class="number">-1</span>)&#123;</span><br><span class="line">			<span class="built_in">puts</span>(<span class="string">"ERR"</span>);</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(ans == comp)&#123;</span><br><span class="line">			<span class="built_in">puts</span>(<span class="string">"Yes"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="built_in">puts</span>(<span class="string">"No"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/17/NO-39/" rel="next" title="bef-> NO.39">
+                <i class="fa fa-chevron-left"></i> bef-> NO.39
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/17/NO-29/" rel="prev" title="bef-> NO.29">
+                bef-> NO.29 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">RBZ</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">98</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">56</span>
+                    <span class="site-state-item-name">Tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#NOIp-2015-D2T2-子串"><span class="nav-number">1.</span> <span class="nav-text">NOIp 2015 D2T2  子串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题目描述"><span class="nav-number">2.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入输出格式"><span class="nav-number">3.</span> <span class="nav-text">输入输出格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入输出样例"><span class="nav-number">4.</span> <span class="nav-text">输入输出样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#说明"><span class="nav-number">5.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题解"><span class="nav-number">6.</span> <span class="nav-text">题解</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#NOIp-2017-D1T2-时间复杂度"><span class="nav-number"></span> <span class="nav-text">NOIp 2017 D1T2 时间复杂度</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目描述-1"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入输出格式-1"><span class="nav-number">2.</span> <span class="nav-text">输入输出格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入输出样例-1"><span class="nav-number">3.</span> <span class="nav-text">输入输出样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#说明-1"><span class="nav-number">4.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题解-1"><span class="nav-number">5.</span> <span class="nav-text">题解</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#对于大模拟，能写成函数的一定要写成函数。功能性的并且重用性高的代码一定也要写成函数。这样子就算程序会变长，但是调试会变得非常轻松！！"><span class="nav-number">5.0.0.1.</span> <span class="nav-text">对于大模拟，能写成函数的一定要写成函数。功能性的并且重用性高的代码一定也要写成函数。这样子就算程序会变长，但是调试会变得非常轻松！！</span></a></li></ol></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+    
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">RBZ</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.5.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+    
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

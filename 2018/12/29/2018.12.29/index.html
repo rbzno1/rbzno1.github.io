@@ -1,0 +1,1465 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.5.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.5.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.5.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="本来想这段时间做做高级算法综合题，不过hz跟我说有场他们出的比赛，我就参加了。 结果发现D题卡SPFA，不然就跟AH学长并列第一260了qwq(Starrydream)  然后就下午了，感觉不睡午觉会困qwq 先看道POI的Hash题。  「POI2010」珍珠项链 Beads题目描述Byteasar 决定制造一条项链，她买了一串珠子，她有一个机器，能把这条珠子切成很多段，使得每段恰有 kk 个珠">
+<meta name="keywords" content="比赛 hash">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Post 35">
+<meta property="og:url" content="http://yoursite.com/2018/12/29/2018.12.29/index.html">
+<meta property="og:site_name" content="RBZ&#39;s blog">
+<meta property="og:description" content="本来想这段时间做做高级算法综合题，不过hz跟我说有场他们出的比赛，我就参加了。 结果发现D题卡SPFA，不然就跟AH学长并列第一260了qwq(Starrydream)  然后就下午了，感觉不睡午觉会困qwq 先看道POI的Hash题。  「POI2010」珍珠项链 Beads题目描述Byteasar 决定制造一条项链，她买了一串珠子，她有一个机器，能把这条珠子切成很多段，使得每段恰有 kk 个珠">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/images/cpt1.jpg">
+<meta property="og:image" content="http://yoursite.com/images/2054_1.jpg">
+<meta property="og:updated_time" content="2018-12-30T01:23:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Post 35">
+<meta name="twitter:description" content="本来想这段时间做做高级算法综合题，不过hz跟我说有场他们出的比赛，我就参加了。 结果发现D题卡SPFA，不然就跟AH学长并列第一260了qwq(Starrydream)  然后就下午了，感觉不睡午觉会困qwq 先看道POI的Hash题。  「POI2010」珍珠项链 Beads题目描述Byteasar 决定制造一条项链，她买了一串珠子，她有一个机器，能把这条珠子切成很多段，使得每段恰有 kk 个珠">
+<meta name="twitter:image" content="http://yoursite.com/images/cpt1.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/12/29/2018.12.29/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Post 35 | RBZ's blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">RBZ's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">A OIer</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Suche</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/29/2018.12.29/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="RBZ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RBZ's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Post 35
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+		
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2018-12-29 00:00:00" itemprop="dateCreated datePublished" datetime="2018-12-29T00:00:00+08:00">2018-12-29</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2018-12-30 09:23:12" itemprop="dateModified" datetime="2018-12-30T09:23:12+08:00">2018-12-30</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本来想这段时间做做高级算法综合题，不过hz跟我说有场他们出的比赛，我就参加了。</p>
+<p>结果发现D题卡SPFA，不然就跟AH学长并列第一260了qwq(Starrydream)</p>
+<p><img src="/images/cpt1.jpg" alt="img"></p>
+<p>然后就下午了，感觉不睡午觉会困qwq</p>
+<p>先看道POI的Hash题。</p>
+<hr>
+<h1 id="「POI2010」珍珠项链-Beads"><a href="#「POI2010」珍珠项链-Beads" class="headerlink" title="「POI2010」珍珠项链 Beads"></a>「POI2010」珍珠项链 Beads</h1><h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>Byteasar 决定制造一条项链，她买了一串珠子，她有一个机器，能把这条珠子切成很多段，使得每段恰有 kk 个珠子 (k&gt;0)(k&gt;0) ，如果这条珠子的长度不是 kk 的倍数，最后一块长度小于 kk 的段就被丢弃了。<br>Byteasar 想知道，选择什么数字 kk 可以得到最多的不同的段。<strong>注意这里的段是可以反转的</strong>，即，子串 1,2,31,2,3 和 3,2,13,2,1 被认为是一样的。</p>
+<h4 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h4><p>第一行一个正整数 nn ，表示珠子的长度。<br>第二行 nn 个空格隔开的正整数 a_1,a_2,\cdots a_na1​,a2​,⋯an​ ，描述这一串珠子的颜色。</p>
+<h4 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h4><p>第一行两个空格隔开的正整数，第一个表示能获得的最大不同的段的个数，第二个表示能获得最大值的 kk 的个数。<br>第二行若干空格隔开的正整数 kk ，表示所有能够取得最大值的 kk ，请将kk按照从小到大的顺序输出。</p>
+<h4 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h4><h4 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">21</span><br><span class="line">1 1 1 2 2 2 3 3 3 1 2 3 3 1 2 2 1 3 3 2 1</span><br></pre></td></tr></table></figure>
+<h4 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">6 1</span><br><span class="line">2</span><br></pre></td></tr></table></figure>
+<h4 id="数据范围与提示"><a href="#数据范围与提示" class="headerlink" title="数据范围与提示"></a>数据范围与提示</h4><p>对于 $100\%$ 的数据， $1\le n\le 2\times 10^5$ </p>
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p>这题好像很好写，尤其是你在想出翻转只需要对后缀hash之后。</p>
+<p>我们需要map来判断这个串是否之前有相同的或者反串相同的。</p>
+<p>时间复杂度$O(nlog^2n)$</p>
+<p>Code：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _MAX 200005</span></span><br><span class="line"><span class="keyword">int</span> n , c[_MAX] , now;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> h[<span class="number">2</span>][_MAX];</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ans;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> k1, k2;</span><br><span class="line">	<span class="keyword">bool</span> <span class="keyword">operator</span> &lt; (<span class="keyword">const</span> Node&amp; x)<span class="keyword">const</span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(k1 == x.k1) <span class="keyword">return</span> k2 &lt; x.k2;</span><br><span class="line">		<span class="keyword">return</span> k1 &lt; x.k1;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="title">pow</span><span class="params">(<span class="keyword">int</span> x , <span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> ans = <span class="number">1</span> , base = x;</span><br><span class="line">	<span class="keyword">for</span>( ; y ; y &gt;&gt;= <span class="number">1</span> , base *= base)</span><br><span class="line">		<span class="keyword">if</span>(y &amp; <span class="number">1</span>)</span><br><span class="line">			ans *= base;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pre</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt;= n ; ++i)</span><br><span class="line">		h[<span class="number">0</span>][i] = h[<span class="number">0</span>][i<span class="number">-1</span>] * <span class="number">178431</span> + c[i];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = n ; i &gt;= <span class="number">1</span> ; --i)</span><br><span class="line">		h[<span class="number">1</span>][i] = h[<span class="number">1</span>][i+<span class="number">1</span>] * <span class="number">178431</span> + c[i];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="title">Prehash</span><span class="params">(<span class="keyword">int</span> l , <span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> h[<span class="number">0</span>][r] - h[<span class="number">0</span>][l<span class="number">-1</span>] * <span class="built_in">pow</span>(<span class="number">178431</span> , r-l+<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="title">Sufhash</span><span class="params">(<span class="keyword">int</span> l , <span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> h[<span class="number">1</span>][l] - h[<span class="number">1</span>][r+<span class="number">1</span>] * <span class="built_in">pow</span>(<span class="number">178431</span>,r-l+<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">solve</span><span class="params">(<span class="keyword">int</span> k)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">map</span>&lt;<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> , <span class="keyword">bool</span>&gt; v1;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = k ; i &lt;= n ; i += k)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(v1[Prehash(i-k+<span class="number">1</span>,i)] || v1[Sufhash(i-k+<span class="number">1</span>,i)]) <span class="keyword">continue</span>;</span><br><span class="line">		++ans;</span><br><span class="line">		v1[Prehash(i-k+<span class="number">1</span>,i)] = <span class="literal">true</span> , v1[Sufhash(i-k+<span class="number">1</span>,i)] = <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt;= n ; ++i)</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;c[i]);</span><br><span class="line">	pre();</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt;= n ; ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(n/i &lt; now) <span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">int</span> k = solve(i);</span><br><span class="line">		<span class="keyword">if</span>(k &gt; now)&#123;</span><br><span class="line">			ans.clear();</span><br><span class="line">			now = k;</span><br><span class="line">			ans.push_back(i);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(k == now) ans.push_back(i);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d %d\n"</span>,now,(<span class="keyword">int</span>)ans.size());</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; (<span class="keyword">int</span>)ans.size() ; ++i)</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d "</span>,ans[i]);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="LOJ-144-DFS-序-1"><a href="#LOJ-144-DFS-序-1" class="headerlink" title="LOJ#144. DFS 序 1"></a>LOJ#144. DFS 序 1</h1><h4 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h4><p>这是一道模板题。</p>
+<p>给一棵有根树，这棵树由编号为 1\dots N1…N 的 NN 个结点组成。根结点的编号为 RR。每个结点都有一个权值，结点 ii 的权值为 v_ivi。<br>接下来有 MM 组操作，操作分为两类：</p>
+<ul>
+<li><code>1 a x</code>，表示将结点 aa 的权值增加 xx；</li>
+<li><code>2 a</code>，表示求结点 aa 的子树上所有结点的权值之和。</li>
+</ul>
+<h4 id="输入格式-1"><a href="#输入格式-1" class="headerlink" title="输入格式"></a>输入格式</h4><p>第一行有三个整数 N,MN,M 和 RR。<br>第二行有 NN 个整数，第 ii 个整数表示 v_ivi​。<br>在接下来的 N-1N−1 行中，每行两个整数，表示一条边。<br>在接下来的 MM 行中，每行一组操作。</p>
+<h4 id="输出格式-1"><a href="#输出格式-1" class="headerlink" title="输出格式"></a>输出格式</h4><p>对于每组 \texttt{2 a}2 a 操作，输出一个整数，表示「以结点 aa 为根的子树」上所有结点的权值之和。</p>
+<h4 id="样例-1"><a href="#样例-1" class="headerlink" title="样例"></a>样例</h4><h4 id="样例输入-1"><a href="#样例输入-1" class="headerlink" title="样例输入 1"></a>样例输入 1</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="样例输出-1"><a href="#样例输出-1" class="headerlink" title="样例输出 1"></a>样例输出 1</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="样例输入-2"><a href="#样例输入-2" class="headerlink" title="样例输入 2"></a>样例输入 2</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">10 14 9</span><br><span class="line">12 -6 -4 -3 12 8 9 6 6 2</span><br><span class="line">8 2</span><br><span class="line">2 10</span><br><span class="line">8 6</span><br><span class="line">2 7</span><br><span class="line">7 1</span><br><span class="line">6 3</span><br><span class="line">10 9</span><br><span class="line">2 4</span><br><span class="line">10 5</span><br><span class="line">1 4 -1</span><br><span class="line">2 2</span><br><span class="line">1 7 -1</span><br><span class="line">2 10</span><br><span class="line">1 10 5</span><br><span class="line">2 1</span><br><span class="line">1 7 -5</span><br><span class="line">2 5</span><br><span class="line">1 1 8</span><br><span class="line">2 7</span><br><span class="line">1 8 8</span><br><span class="line">2 2</span><br><span class="line">1 5 5</span><br><span class="line">2 6</span><br></pre></td></tr></table></figure>
+<h4 id="样例输出-2"><a href="#样例输出-2" class="headerlink" title="样例输出 2"></a>样例输出 2</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">21</span><br><span class="line">34</span><br><span class="line">12</span><br><span class="line">12</span><br><span class="line">23</span><br><span class="line">31</span><br><span class="line">4</span><br></pre></td></tr></table></figure>
+<h4 id="数据范围与提示-1"><a href="#数据范围与提示-1" class="headerlink" title="数据范围与提示"></a>数据范围与提示</h4><p>$1\leqslant N, M\leqslant 10^6 1\leqslant R\leqslant N -10^6\leqslant v_i, x\leqslant 10^6$</p>
+<h2 id="题解-1"><a href="#题解-1" class="headerlink" title="题解"></a>题解</h2><p><del>这道题只需要dfs，是不是很简单</del></p>
+<p>树的dfs序可过，HPD大概率不可过。</p>
+<p>我们通过树的dfs将树的每个节点连续编号，并且由于dfs的性质总是深度优先，所以只有一个点的子树全被编号才会回溯进入下一个点， 然后一个点$k$的子树在序编号上就是$k+sz_k$了，然后我们就可以用小常数的树状数组在序列上轻松完成题目要求了。</p>
+<p>时间复杂度$O((n+m)logn)$</p>
+<p>Code:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _max 1000005</span></span><br><span class="line"><span class="keyword">int</span> idx , dfn[_max] , n , v[_max] , sz[_max] , r , m ;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> bit[_max] ;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; g[_max];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x , <span class="keyword">int</span> fx)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	sz[x] = <span class="number">1</span>;</span><br><span class="line">	dfn[x] = ++idx;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; (<span class="keyword">int</span>)g[x].size() ; ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> v = g[x][i];</span><br><span class="line">		<span class="keyword">if</span>(v == fx) <span class="keyword">continue</span>;</span><br><span class="line">		dfs(v , x) , sz[x] += sz[v];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> pos)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(pos == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>( ; pos ; pos -= pos &amp; -pos)</span><br><span class="line">		ans += bit[pos];</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> pos , <span class="keyword">int</span> val)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>( ; pos &lt;= n ; pos += pos &amp; -pos)</span><br><span class="line">		bit[pos] += val;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;n,&amp;m,&amp;r);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt;= n ; ++i)</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;v[i]);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt;= n - <span class="number">1</span> ; ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> x , y ;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;x,&amp;y);</span><br><span class="line">		g[x].push_back(y) , g[y].push_back(x);</span><br><span class="line">	&#125;</span><br><span class="line">	dfs(r,r);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt;= n ; ++i)</span><br><span class="line">		update(dfn[i],v[i]);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt;= m ; ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> op , pos , val;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;op);</span><br><span class="line">		<span class="keyword">if</span>(op == <span class="number">1</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;pos,&amp;val);</span><br><span class="line">			update(dfn[pos], val);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(op == <span class="number">2</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;pos);</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,query(dfn[pos] + sz[pos] - <span class="number">1</span>) - query(dfn[pos]<span class="number">-1</span>));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="「BalticOI-2014-Day-1」三个朋友"><a href="#「BalticOI-2014-Day-1」三个朋友" class="headerlink" title="「BalticOI 2014 Day 1」三个朋友"></a>「BalticOI 2014 Day 1」三个朋友</h1><h4 id="题目描述-2"><a href="#题目描述-2" class="headerlink" title="题目描述"></a>题目描述</h4><p><strong>本题译自 BalticOI 2014 Day1 T2「Three Friends」</strong></p>
+<p>给定一个字符串 SS，先将字符串 SS 复制一次<del>（变成双倍快乐）</del>，得到字符串 TT，然后在 TT 中插入一个字符，得到字符串 UU。</p>
+<p>给出字符串 UU，重新构造出字符串 SS。</p>
+<p>所有字符串只包含大写英文字母。</p>
+<h4 id="输入格式-2"><a href="#输入格式-2" class="headerlink" title="输入格式"></a>输入格式</h4><p>第一行一个整数 NN，表示字符串 UU 的长度。</p>
+<p>第二行一个长度为 NN 的字符串，表示字符串 UU。</p>
+<h4 id="输出格式-2"><a href="#输出格式-2" class="headerlink" title="输出格式"></a>输出格式</h4><p>一行一个字符串，表示字符串 SS。</p>
+<p>特别地：</p>
+<ul>
+<li>如果字符串不是按照题述方法构造的，输出 <code>NOT POSSIBLE</code>；</li>
+<li>如果字符串 SS 不唯一，输出 <code>NOT UNIQUE</code>。</li>
+</ul>
+<h4 id="样例-2"><a href="#样例-2" class="headerlink" title="样例"></a>样例</h4><h4 id="样例输入-1-1"><a href="#样例输入-1-1" class="headerlink" title="样例输入 1"></a>样例输入 1</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">7</span><br><span class="line">ABXCABC</span><br></pre></td></tr></table></figure>
+<h4 id="样例输出-1-1"><a href="#样例输出-1-1" class="headerlink" title="样例输出 1"></a>样例输出 1</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ABC</span><br></pre></td></tr></table></figure>
+<h4 id="样例输入-2-1"><a href="#样例输入-2-1" class="headerlink" title="样例输入 2"></a>样例输入 2</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">6</span><br><span class="line">ABCDEF</span><br></pre></td></tr></table></figure>
+<h4 id="样例输出-2-1"><a href="#样例输出-2-1" class="headerlink" title="样例输出 2"></a>样例输出 2</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NOT POSSIBLE</span><br></pre></td></tr></table></figure>
+<h4 id="样例输入-3"><a href="#样例输入-3" class="headerlink" title="样例输入 3"></a>样例输入 3</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">9</span><br><span class="line">ABABABABA</span><br></pre></td></tr></table></figure>
+<h4 id="样例输出-3"><a href="#样例输出-3" class="headerlink" title="样例输出 3"></a>样例输出 3</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NOT UNIQUE</span><br></pre></td></tr></table></figure>
+<h4 id="数据范围与提示-2"><a href="#数据范围与提示-2" class="headerlink" title="数据范围与提示"></a>数据范围与提示</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>子任务</th>
+<th>分数</th>
+<th>数据范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>3535</td>
+<td>2\le N\le 20012≤N≤2001</td>
+</tr>
+<tr>
+<td>2</td>
+<td>6565</td>
+<td>2\le N\le 20000012≤N≤2000001</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="题解-2"><a href="#题解-2" class="headerlink" title="题解"></a>题解</h2><p>这题思路不难想。</p>
+<p>首先分类讨论，要么在左半边要么右半边，然后枚举字符，利用hash快速算出删除那部分的hash和没删除的一半的hash，然后比较相等不相等就行了。</p>
+<p>关键在于如何快速合并两个hash，这感觉是数学了吧。。</p>
+<p>我们将删除左边的那部分串的绝对hash算出来（就是前缀hash通过快速幂相减），然后*base在加上另一部分。</p>
+<p>然后这个值整体乘base在$2^{64}$下的逆元就可以了。。</p>
+<p>不知道这个口胡的方法对不对，总之大体思路就是这样的，等有心情写代码就试试。</p>
+<hr>
+<h1 id="LOJ-10064-「一本通-3-1-例-1」黑暗城堡"><a href="#LOJ-10064-「一本通-3-1-例-1」黑暗城堡" class="headerlink" title="LOJ#10064. 「一本通 3.1 例 1」黑暗城堡"></a>LOJ#10064. 「一本通 3.1 例 1」黑暗城堡</h1><h4 id="题目描述-3"><a href="#题目描述-3" class="headerlink" title="题目描述"></a>题目描述</h4><p>你知道黑暗城堡有 NN 个房间，MM 条可以制造的双向通道，以及每条通道的长度。</p>
+<p>城堡是树形的并且满足下面的条件：</p>
+<p>设 D_iDi 为如果所有的通道都被修建，第 ii 号房间与第 11 号房间的最短路径长度；</p>
+<p>而 S_iSi 为实际修建的树形城堡中第 ii 号房间与第 11 号房间的路径长度；</p>
+<p>要求对于所有整数 ii (1\le i\le N1≤i≤N)，有 S_i= D_iSi=Di 成立。</p>
+<p>你想知道有多少种不同的城堡修建方案。当然，你只需要输出答案对 2^{31} -1231−1 取模之后的结果就行了。</p>
+<h4 id="输入格式-3"><a href="#输入格式-3" class="headerlink" title="输入格式"></a>输入格式</h4><p>第一行为两个由空格隔开的整数 N, MN,M;</p>
+<p>第二行到第 M+1M+1 行为 33 个由空格隔开的整数 x, y, lx,y,l：表示 xx 号房间与 yy 号房间之间的通道长度为 ll。</p>
+<h4 id="输出格式-3"><a href="#输出格式-3" class="headerlink" title="输出格式"></a>输出格式</h4><p>一个整数：不同的城堡修建方案数对 2^{31} -1231−1 取模之后的结果。</p>
+<h4 id="样例-3"><a href="#样例-3" class="headerlink" title="样例"></a>样例</h4><h4 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">4 6</span><br><span class="line">1 2 1</span><br><span class="line">1 3 2</span><br><span class="line">1 4 3</span><br><span class="line">2 3 1</span><br><span class="line">2 4 2</span><br><span class="line">3 4 1</span><br></pre></td></tr></table></figure>
+<h4 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">6</span><br></pre></td></tr></table></figure>
+<h4 id="样例说明"><a href="#样例说明" class="headerlink" title="样例说明"></a>样例说明</h4><p>一共有 44 个房间，66 条道路，其中 11 号和 22 号，11 号和 33 号，11 号和 44 号，22 号和 33 号，22 号和 44 号，33 号和 44 号房间之间的通道长度分别为 11，22，33，11，22，11。</p>
+<p>而不同的城堡修建方案数对 $2^{31}$ -1取模之后的结果为 66。</p>
+<h4 id="数据范围与提示-3"><a href="#数据范围与提示-3" class="headerlink" title="数据范围与提示"></a>数据范围与提示</h4><p>对于全部数据，$1\le N\le 10001≤N≤1000，1\le M\le \frac{N(N-1)}{2}1≤M≤2N(N−1)$</p>
+<h2 id="题解-3"><a href="#题解-3" class="headerlink" title="题解"></a>题解</h2><p>这个题我似乎受一道高难度图论省选题的启发想出了一个做法。</p>
+<p>首先一眼看出这是让你求最短路径生成树的个数。</p>
+<p>我们大概知道一个最短路径生成树怎么求。</p>
+<p>但是求个数的话。</p>
+<p>不妨联想如果我们把所有最短路加到一个图里，是不是可以通过某些神奇的组合原理统计答案呢？</p>
+<p>答案是肯定的。</p>
+<p>这个所有最短路都被加入的图是有拓扑性质的，为什么呢？</p>
+<p>证明命题：最短路图中不存在正环（0环和负环题目必须保证不存在）</p>
+<p>从定义出发，如果图中有正环，那么从左和右必有一个更小的，因此不能有环。</p>
+<p>严谨证明By shadowice：</p>
+<p>原理，我们发现如果有最短路就不可以有负环，因此，我们考虑走过属于一条最短路的一条边的过程，我们会发现，一定是从dis值低的点走到了dis值高的点(因为没零环)，相当于我们一直在上坡，而显然，一个一直<strong>上坡的环是不存在的</strong></p>
+<p>因此我们在DIJKSTRA的过程中建出这个图（反向，不然怎么统计呢？），然后通过拓扑排序+dp可以在$O(n+m)$</p>
+<p>的时间里求出这个方案数。</p>
+<p>然后由于现在非常懒，所以不想写代码。</p>
+<p>话说我能想出这道题还真是被HAOI的道路那道题启发了呢。</p>
+<hr>
+<p>关于用Dijkstra如何求严格次短路。</p>
+<p>显然有些奇怪的人严格次短路也不想让你用SPFA，那么我们就应该想想如何使用DIJKSTRA求次短路。</p>
+<p>严格次短路还是挺简单的，非严格次短路可能比较麻烦，也许得记录最短路的更新点然后再枚举边。。</p>
+<p>严格只需要枚举每条边，然后这条边的边权加上源点到这条边一个点的距离加上终点到另一个的最短路大于源点到终点的最短路即可，至于为什么这样做是正确的，好像只需要从最短路的定义出发就不难证明。。</p>
+<p>证明：对于枚举的边，如果在最短路上，两端点必然都是最短路的值，否则，根据仅次于最短路，我们应该让到达这条边和从这条边到终点都尽可能小。可能这种贪心保证最后答案一定正确且最优吧。。</p>
+<p>不会证明qwq</p>
+<hr>
+<h1 id="Color-a-Tree"><a href="#Color-a-Tree" class="headerlink" title="Color a Tree"></a>Color a Tree</h1><div class="table-container">
+<table>
+<thead>
+<tr>
+<th><strong>Time Limit:</strong> 1000MS</th>
+<th></th>
+<th><strong>Memory Limit:</strong> 30000K</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Total Submissions:</strong> 8640</td>
+<td></td>
+<td><strong>Accepted:</strong> 2980</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Description</p>
+<p>Bob is very interested in the data structure of a tree. A tree is a directed graph in which a special node is singled out, called the “root” of the tree, and there is a unique path from the root to each of the other nodes. </p>
+<p>Bob intends to color all the nodes of a tree with a pen. A tree has N nodes, these nodes are numbered 1, 2, …, N. Suppose coloring a node takes 1 unit of time, and after finishing coloring one node, he is allowed to color another. Additionally, he is allowed to color a node only when its father node has been colored. Obviously, Bob is only allowed to color the root in the first try. </p>
+<p>Each node has a “coloring cost factor”, Ci. The coloring cost of each node depends both on Ci and the time at which Bob finishes the coloring of this node. At the beginning, the time is set to 0. If the finishing time of coloring node i is Fi, then the coloring cost of node i is Ci * Fi. </p>
+<p>For example, a tree with five nodes is shown in Figure-1. The coloring cost factors of each node are 1, 2, 1, 2 and 4. Bob can color the tree in the order 1, 3, 5, 2, 4, with the minimum total coloring cost of 33.<br><img src="\images\2054_1.jpg" alt="img"><br>Given a tree and the coloring cost factor of each node, please help Bob to find the minimum possible total coloring cost for coloring all the nodes.</p>
+<p>Input</p>
+<p>The input consists of several test cases. The first line of each case contains two integers N and R (1 &lt;= N &lt;= 1000, 1 &lt;= R &lt;= N), where N is the number of nodes in the tree and R is the node number of the root node. The second line contains N integers, the i-th of which is Ci (1 &lt;= Ci &lt;= 500), the coloring cost factor of node i. Each of the next N-1 lines contains two space-separated node numbers V1 and V2, which are the endpoints of an edge in the tree, denoting that V1 is the father node of V2. No edge will be listed twice, and all edges will be listed. </p>
+<p>A test case of N = 0 and R = 0 indicates the end of input, and should not be processed. </p>
+<p>Output</p>
+<p>For each test case, output a line containing the minimum total coloring cost required for Bob to color all the nodes.</p>
+<p>Sample Input</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">5 1</span><br><span class="line">1 2 1 2 4</span><br><span class="line">1 2</span><br><span class="line">1 3</span><br><span class="line">2 4</span><br><span class="line">3 5</span><br><span class="line">0 0</span><br></pre></td></tr></table></figure>
+<p>Sample Output</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">33</span><br></pre></td></tr></table></figure>
+<p>Source</p>
+<p><a href="http://poj.org/searchproblem?field=source&amp;key=Beijing+2004" target="_blank" rel="noopener">Beijing 2004</a></p>
+<h2 id="题解-4"><a href="#题解-4" class="headerlink" title="题解"></a>题解</h2><p>算法竞赛进阶指南上一道挺神的贪心。</p>
+<p>用到了等效替代的思想，贪心里用这个东西一定要注意完全等效，是需要数学推导的。</p>
+<p>发现还是不会，贪心好难啊qwq，以后还会回来看的。。</p>
+<hr>
+<h1 id="Dynamic-Rankings"><a href="#Dynamic-Rankings" class="headerlink" title="Dynamic Rankings"></a>Dynamic Rankings</h1><ul>
+<li><a href="https://darkbzoj.cf/problem/1901#tab-custom-test" target="_blank" rel="noopener"> 自定义测试</a></li>
+</ul>
+<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>给定一个含有n个数的序列a[1],a[2],a[3]……a[n]，程序必须回答这样的询问：对于给定的i,j,k，在a[i],a[i+1</p>
+<p>],a[i+2]……a[j]中第k小的数是多少(1≤k≤j-i+1)，并且，你可以改变一些a[i]的值，改变后，程序还能针对改</p>
+<p>变后的a继续回答上面的问题。</p>
+<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>第一行有两个正整数n(1≤n≤10000)，m(1≤m≤10000)。</p>
+<p>分别表示序列的长度和指令的个数。</p>
+<p>第二行有n个数，表示a[1],a[2]……a[n]，这些数都小于10^9。</p>
+<p>接下来的m行描述每条指令</p>
+<p>每行的格式是下面两种格式中的一种。 </p>
+<p>Q i j k 或者 C i t </p>
+<p>Q i j k （i,j,k是数字，1≤i≤j≤n, 1≤k≤j-i+1）</p>
+<p>表示询问指令，询问a[i]，a[i+1]……a[j]中第k小的数。</p>
+<p>C i t (1≤i≤n，0≤t≤10^9)表示把a[i]改变成为t</p>
+<p>m,n≤10000</p>
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p> 对于每一次询问，你都需要输出他的答案，每一个输出占单独的一行。</p>
+<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h3><p>5 3</p>
+<p>3 2 1 4 7</p>
+<p>Q 1 4 3</p>
+<p>C 2 6</p>
+<p>Q 2 5 3</p>
+<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h3><p>3</p>
+<p>6</p>
+<h2 id="题解-5"><a href="#题解-5" class="headerlink" title="题解"></a>题解</h2><p>终于想明白带修改的整体二分该怎么做，再写今天最后一篇口胡题解。</p>
+<p>我们还是按照值域划分。不过把修改拆成删除原数加入新数两个修改。</p>
+<p>设计一个函数$solve(l,r,s,t)$表示分治值域$l,r$对于在这个值域内的修改$s,t$</p>
+<p>然后利用权值树状数组进行统计。</p>
+<p>然后对于个数小于等于$k$的把询问加在分治左边，大于$k$的放在右边，这里和静态整体二分是一样的。</p>
+<p>唯一不同的是我们对修改也这么分类（按照值域），然后将同一类的复制到原数组使其连续然后继续分治。</p>
+<p>终于明白了。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/比赛-hash/" rel="tag"># 比赛 hash</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/28/2018.12.28/" rel="next" title="Post 34">
+                <i class="fa fa-chevron-left"></i> Post 34
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/30/2018.12.30/" rel="prev" title="Post 36">
+                Post 36 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">RBZ</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">98</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">56</span>
+                    <span class="site-state-item-name">Tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#「POI2010」珍珠项链-Beads"><span class="nav-number">1.</span> <span class="nav-text">「POI2010」珍珠项链 Beads</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输入格式"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输出格式"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样例"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">样例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输入样例"><span class="nav-number">1.0.0.5.</span> <span class="nav-text">输入样例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输出样例"><span class="nav-number">1.0.0.6.</span> <span class="nav-text">输出样例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据范围与提示"><span class="nav-number">1.0.0.7.</span> <span class="nav-text">数据范围与提示</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题解"><span class="nav-number">1.0.1.</span> <span class="nav-text">题解</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#LOJ-144-DFS-序-1"><span class="nav-number">2.</span> <span class="nav-text">LOJ#144. DFS 序 1</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述-1"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输入格式-1"><span class="nav-number">2.0.0.2.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输出格式-1"><span class="nav-number">2.0.0.3.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样例-1"><span class="nav-number">2.0.0.4.</span> <span class="nav-text">样例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样例输入-1"><span class="nav-number">2.0.0.5.</span> <span class="nav-text">样例输入 1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样例输出-1"><span class="nav-number">2.0.0.6.</span> <span class="nav-text">样例输出 1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样例输入-2"><span class="nav-number">2.0.0.7.</span> <span class="nav-text">样例输入 2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样例输出-2"><span class="nav-number">2.0.0.8.</span> <span class="nav-text">样例输出 2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据范围与提示-1"><span class="nav-number">2.0.0.9.</span> <span class="nav-text">数据范围与提示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题解-1"><span class="nav-number">2.1.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#「BalticOI-2014-Day-1」三个朋友"><span class="nav-number">3.</span> <span class="nav-text">「BalticOI 2014 Day 1」三个朋友</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述-2"><span class="nav-number">3.0.0.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输入格式-2"><span class="nav-number">3.0.0.2.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输出格式-2"><span class="nav-number">3.0.0.3.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样例-2"><span class="nav-number">3.0.0.4.</span> <span class="nav-text">样例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样例输入-1-1"><span class="nav-number">3.0.0.5.</span> <span class="nav-text">样例输入 1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样例输出-1-1"><span class="nav-number">3.0.0.6.</span> <span class="nav-text">样例输出 1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样例输入-2-1"><span class="nav-number">3.0.0.7.</span> <span class="nav-text">样例输入 2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样例输出-2-1"><span class="nav-number">3.0.0.8.</span> <span class="nav-text">样例输出 2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样例输入-3"><span class="nav-number">3.0.0.9.</span> <span class="nav-text">样例输入 3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样例输出-3"><span class="nav-number">3.0.0.10.</span> <span class="nav-text">样例输出 3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据范围与提示-2"><span class="nav-number">3.0.0.11.</span> <span class="nav-text">数据范围与提示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题解-2"><span class="nav-number">3.1.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LOJ-10064-「一本通-3-1-例-1」黑暗城堡"><span class="nav-number">4.</span> <span class="nav-text">LOJ#10064. 「一本通 3.1 例 1」黑暗城堡</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述-3"><span class="nav-number">4.0.0.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输入格式-3"><span class="nav-number">4.0.0.2.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输出格式-3"><span class="nav-number">4.0.0.3.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样例-3"><span class="nav-number">4.0.0.4.</span> <span class="nav-text">样例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样例输入"><span class="nav-number">4.0.0.5.</span> <span class="nav-text">样例输入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样例输出"><span class="nav-number">4.0.0.6.</span> <span class="nav-text">样例输出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样例说明"><span class="nav-number">4.0.0.7.</span> <span class="nav-text">样例说明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据范围与提示-3"><span class="nav-number">4.0.0.8.</span> <span class="nav-text">数据范围与提示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题解-3"><span class="nav-number">4.1.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Color-a-Tree"><span class="nav-number">5.</span> <span class="nav-text">Color a Tree</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#题解-4"><span class="nav-number">5.1.</span> <span class="nav-text">题解</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Dynamic-Rankings"><span class="nav-number">6.</span> <span class="nav-text">Dynamic Rankings</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Description"><span class="nav-number">6.0.1.</span> <span class="nav-text">Description</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Input"><span class="nav-number">6.0.2.</span> <span class="nav-text">Input</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output"><span class="nav-number">6.0.3.</span> <span class="nav-text">Output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sample-Input"><span class="nav-number">6.0.4.</span> <span class="nav-text">Sample Input</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sample-Output"><span class="nav-number">6.0.5.</span> <span class="nav-text">Sample Output</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题解-5"><span class="nav-number">6.1.</span> <span class="nav-text">题解</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+    
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">RBZ</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.5.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+    
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

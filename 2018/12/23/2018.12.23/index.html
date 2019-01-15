@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.5.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.5.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.5.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="「SHOI2015」超能粒子炮・改题目描述曾经发明了脑洞治疗仪与超能粒子炮的发明家 SHTSC 又公开了他的新发明：超能粒子炮・改——一种可以发射威力更加强大的粒子流的神秘装置。 超能粒子炮・改相比超能粒子炮，在威力上有了本质的提升。它有两个参数 nn、kk，它会向每个编号为 00 到 kk（包含两端）的位置 ii 发射威力为 \mathrm{C}_n^i \mathbin{\mathrm{mod">
+<meta name="keywords" content="lucas 可持久化 莫队">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Post 29">
+<meta property="og:url" content="http://yoursite.com/2018/12/23/2018.12.23/index.html">
+<meta property="og:site_name" content="RBZ&#39;s blog">
+<meta property="og:description" content="「SHOI2015」超能粒子炮・改题目描述曾经发明了脑洞治疗仪与超能粒子炮的发明家 SHTSC 又公开了他的新发明：超能粒子炮・改——一种可以发射威力更加强大的粒子流的神秘装置。 超能粒子炮・改相比超能粒子炮，在威力上有了本质的提升。它有两个参数 nn、kk，它会向每个编号为 00 到 kk（包含两端）的位置 ii 发射威力为 \mathrm{C}_n^i \mathbin{\mathrm{mod">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/images/lzp1.jpg">
+<meta property="og:image" content="http://yoursite.com/images/lzp2.jpg">
+<meta property="og:updated_time" content="2018-12-25T00:59:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Post 29">
+<meta name="twitter:description" content="「SHOI2015」超能粒子炮・改题目描述曾经发明了脑洞治疗仪与超能粒子炮的发明家 SHTSC 又公开了他的新发明：超能粒子炮・改——一种可以发射威力更加强大的粒子流的神秘装置。 超能粒子炮・改相比超能粒子炮，在威力上有了本质的提升。它有两个参数 nn、kk，它会向每个编号为 00 到 kk（包含两端）的位置 ii 发射威力为 \mathrm{C}_n^i \mathbin{\mathrm{mod">
+<meta name="twitter:image" content="http://yoursite.com/images/lzp1.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/12/23/2018.12.23/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Post 29 | RBZ's blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">RBZ's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">A OIer</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Suche</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/23/2018.12.23/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="RBZ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RBZ's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Post 29
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+		
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2018-12-23 00:00:00" itemprop="dateCreated datePublished" datetime="2018-12-23T00:00:00+08:00">2018-12-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2018-12-25 08:59:22" itemprop="dateModified" datetime="2018-12-25T08:59:22+08:00">2018-12-25</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="「SHOI2015」超能粒子炮・改"><a href="#「SHOI2015」超能粒子炮・改" class="headerlink" title="「SHOI2015」超能粒子炮・改"></a>「SHOI2015」超能粒子炮・改</h1><h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>曾经发明了脑洞治疗仪与超能粒子炮的发明家 SHTSC 又公开了他的新发明：超能粒子炮・改——一种可以发射威力更加强大的粒子流的神秘装置。</p>
+<p>超能粒子炮・改相比超能粒子炮，在威力上有了本质的提升。它有两个参数 nn、kk，它会向每个编号为 00 到 kk（包含两端）的位置 ii 发射威力为 \mathrm{C}_n^i \mathbin{\mathrm{mod}} 2333Cnimod2333 的粒子流。</p>
+<p>现在 SHTSC 给出了他的超能粒子炮・改的参数，让你求出其发射的粒子流的威力之和除以 23332333 所得的余数。</p>
+<h4 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h4><p>第一行一个整数 tt 表示数据组数。<br>之后 tt 行，每行两个整数 nn、kk，含义如题面描述。</p>
+<h4 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h4><p>tt 行，每行一个整数，表示其粒子流的威力之和模 23332333 的值。</p>
+<h4 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h4><h4 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">5 5</span><br><span class="line">10 7</span><br><span class="line">1145 14</span><br></pre></td></tr></table></figure>
+<h4 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">32</span><br><span class="line">968</span><br><span class="line">763</span><br></pre></td></tr></table></figure>
+<h4 id="数据范围与提示"><a href="#数据范围与提示" class="headerlink" title="数据范围与提示"></a>数据范围与提示</h4><p>对于 $100\%$的数据，$t = 100000$，$n, k \leq 10^{18}$。</p>
+<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><p>这道题是一道很好的数学题，昨天的推导已经放了（那就再放一次凑数吧）</p>
+<p><img src="/images/lzp1.jpg" alt="img"></p>
+<p><img src="/images/lzp2.jpg" alt="img"></p>
+<p>值得一提的是这题计算的时候有很多细节。。</p>
+<p>比如说千万不忘了那些细节，什么$k &lt; 0$ , $k=0$ , $n=0$</p>
+<p>这些细节值45分！（狗日的多组数据。。）</p>
+<p>还有就是细节推导错误，虽然昨天我贴的题解是对的，但我并没有看而是自己推的，结果应该是$\frac{k}{p}-1$块整体处理我忘了减1，然后不完整的块我加了1.。。。</p>
+<p>Code：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mod 2333</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long </span></span><br><span class="line">LL n , k , f[mod+<span class="number">1</span>][mod+<span class="number">1</span>] , fac[mod+<span class="number">1</span>] , g[mod+<span class="number">1</span>];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> LL <span class="title">pow</span><span class="params">(LL x , LL y , LL m)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	LL ans = <span class="number">1</span> , base = x;</span><br><span class="line">	<span class="keyword">for</span>( ; y ; y &gt;&gt;= <span class="number">1</span> , (base *= base) %= m)</span><br><span class="line">		<span class="keyword">if</span>(y &amp; <span class="number">1</span>) </span><br><span class="line">			ans = ans * base % m;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">exgcd</span><span class="params">(<span class="keyword">int</span> a , <span class="keyword">int</span> b , <span class="keyword">int</span>&amp; x , <span class="keyword">int</span>&amp; y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(!b) x = <span class="number">1</span> , y = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">else</span> exgcd(b , a % b , y , x) , y -= a/b * x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> LL <span class="title">inv</span><span class="params">(<span class="keyword">int</span> k)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> x , y;</span><br><span class="line">	exgcd(k , mod , x , y);</span><br><span class="line">	x = (x % mod + mod) % mod;</span><br><span class="line">	<span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pre</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	fac[<span class="number">0</span>] = <span class="number">1</span> , g[<span class="number">0</span>] = inv(<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt;= mod ; ++i)</span><br><span class="line">		fac[i] = fac[i<span class="number">-1</span>] * i % mod , g[i] = g[i<span class="number">-1</span>] * inv(i) % mod;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> LL <span class="title">C</span><span class="params">(<span class="keyword">int</span> n , <span class="keyword">int</span> m)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(m &gt; n) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">return</span> fac[n] * g[m] % mod * g[n-m];		</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> LL <span class="title">lucas</span><span class="params">(LL n , LL m)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(!m)	<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">return</span> C(n % mod , m % mod) * lucas(n / mod , m / mod) % mod;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> LL <span class="title">calc</span><span class="params">(<span class="keyword">int</span> n , <span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (f[n][k<span class="number">-1</span>] + lucas(n,k)) % mod;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">preF</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	f[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt;= mod ; ++i)</span><br><span class="line">		f[i][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt;= mod ; ++i)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span> ; j &lt;= mod ; ++j)</span><br><span class="line">			f[i][j] = calc(i,j);</span><br><span class="line">	<span class="keyword">return</span> ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> LL <span class="title">solve</span><span class="params">(LL n , LL k)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(k &lt; <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span>(!n || !k) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span>(n &lt;= mod &amp;&amp; k &lt;= mod) <span class="keyword">return</span> f[n][k];</span><br><span class="line">	<span class="keyword">return</span> solve(n/mod , k/mod<span class="number">-1</span>) * solve(n % mod , mod<span class="number">-1</span>) % mod + lucas(n/mod , k/mod) * solve(n%mod , k%mod) % mod;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	pre();</span><br><span class="line">	preF();</span><br><span class="line">	<span class="keyword">int</span> t;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;t);</span><br><span class="line">	<span class="keyword">while</span>(~--t)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%lld%lld"</span>,&amp;n,&amp;k);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,solve(n,k) % mod);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>无语，今天是真的废，三维偏序我调了一天了。。。哪种数据错我都分析了，只要重复元素多并且n较大就立刻完蛋，否则怎么也拍不出错来。。</p>
+<p>这可咋整。。</p>
+<p>感觉我的想法很正确，但就是不对，10分。。</p>
+<p>完全想不到问题在哪，有点虚。</p>
+<p>可能真的得抄题解才能过活的感觉。</p>
+<p>我TM就不想炒题解，一下午没弄出来这破玩意！</p>
+<h1 id="【模板】三维偏序（陌上花开）"><a href="#【模板】三维偏序（陌上花开）" class="headerlink" title="【模板】三维偏序（陌上花开）"></a>【模板】三维偏序（陌上花开）</h1><h2 id="题目背景"><a href="#题目背景" class="headerlink" title="题目背景"></a>题目背景</h2><p>这是一道模板题</p>
+<p>可以使用bitset，CDQ分治，K-DTree等方式解决。</p>
+<h2 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h2><p>有 nn 个元素，第 ii 个元素有 a_iai、b_ibi、c_ici 三个属性，设 f(i)f(i) 表示满足 a_j \leq a_iaj≤ai 且 b_j \leq b_ibj≤bi 且 c_j \leq c_icj≤ci 的 jj 的数量。</p>
+<p>对于 d \in [0, n)d∈[0,n)，求 f(i) = df(i)=d 的数量</p>
+<h2 id="输入输出格式"><a href="#输入输出格式" class="headerlink" title="输入输出格式"></a>输入输出格式</h2><p>输入格式：</p>
+<p>第一行两个整数 nn、kk，分别表示元素数量和最大属性值。</p>
+<p>之后 nn 行，每行三个整数 a_iai、b_ibi、c_ici，分别表示三个属性值。</p>
+<p>输出格式：</p>
+<p>输出 nn 行，第 d + 1d+1 行表示 f(i) = df(i)=d 的 ii 的数量。</p>
+<h2 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h2><p>输入样例#1：</p>
+<p>复制</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">10 3</span><br><span class="line">3 3 3</span><br><span class="line">2 3 3</span><br><span class="line">2 3 1</span><br><span class="line">3 1 1</span><br><span class="line">3 1 2</span><br><span class="line">1 3 1</span><br><span class="line">1 1 2</span><br><span class="line">1 2 2</span><br><span class="line">1 3 2</span><br><span class="line">1 2 1</span><br></pre></td></tr></table></figure>
+<p>输出样例#1：</p>
+<p>复制</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">1</span><br><span class="line">3</span><br><span class="line">0</span><br><span class="line">1</span><br><span class="line">0</span><br><span class="line">1</span><br><span class="line">0</span><br><span class="line">0</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>$1 \leq n \leq 100000, 1 \leq k \leq 200000$</p>
+<h2 id="题解-1"><a href="#题解-1" class="headerlink" title="题解"></a>题解</h2><p>我就打这个错误的，能过除了一堆重复的外所有数据的CDQ。</p>
+<p>这起码是我自己想的。</p>
+<p>Code:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// luogu-judger-enable-o2</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 100005</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxv 200005</span></span><br><span class="line"><span class="keyword">int</span> n , seg[maxv] , v[maxn] , ans[maxn] , k , c[maxn] ,tot , dsb[maxn];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> a , b , c , id , cr;</span><br><span class="line">    <span class="keyword">bool</span> <span class="keyword">operator</span>&lt;(<span class="keyword">const</span> Node&amp; x)<span class="keyword">const</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(a == x.a &amp;&amp; b == x.b) <span class="keyword">return</span> c &lt; x.c;</span><br><span class="line">        <span class="keyword">if</span>(a == x.a) <span class="keyword">return</span> b &lt; x.b;</span><br><span class="line">        <span class="keyword">return</span> a &lt; x.a;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;p[maxn] , tmp[maxn] , r[maxn];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pre</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::sort(p+<span class="number">1</span>,p+n+<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> k = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt;= n ; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(p[i].a == p[k].a &amp;&amp; p[i].b == p[k].b &amp;&amp; p[i].c == p[k].c)</span><br><span class="line">            ++v[p[k].id] , dsb[p[i].id] = p[k].id;</span><br><span class="line">        <span class="keyword">else</span> k = i , v[p[i].id] ++ , r[++tot] = p[i] , r[tot].cr = tot;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> pos , <span class="keyword">int</span> v)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>( ; pos &lt;= k ; pos += pos &amp; -pos)</span><br><span class="line">        seg[pos] += v;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> pos)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>( ; pos ; pos -= pos &amp; -pos)</span><br><span class="line">        ans += seg[pos];</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(<span class="keyword">const</span> Node&amp; x , <span class="keyword">const</span> Node&amp; y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x.b == y.b) <span class="keyword">return</span> x.c &lt; y.c;</span><br><span class="line">    <span class="keyword">return</span> x.b &lt; y.b;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CDQ</span><span class="params">(<span class="keyword">int</span> l , <span class="keyword">int</span> r , Node* pt)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(l == r) <span class="keyword">return</span> ;</span><br><span class="line">    <span class="keyword">int</span> mid = l + r &gt;&gt; <span class="number">1</span>;</span><br><span class="line">    CDQ(l , mid , pt)  , CDQ(mid + <span class="number">1</span> , r , pt);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = l ; i &lt;= r;  ++i)</span><br><span class="line">        tmp[i] = pt[i];</span><br><span class="line">    <span class="built_in">std</span>::sort(tmp+l,tmp+r+<span class="number">1</span>,cmp);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = l ; i &lt;= r ; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(tmp[i].cr &lt;= mid) update(tmp[i].c , v[tmp[i].id]);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(tmp[i].cr &gt;= mid) ans[tmp[i].id] += query(tmp[i].c);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = l ; i &lt;= r ; ++i)</span><br><span class="line">        <span class="keyword">if</span>(tmp[i].cr &lt;= mid) update(tmp[i].c , -v[tmp[i].id]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">//  freopen("data.in","r",stdin);</span></span><br><span class="line">  <span class="comment">//  freopen("my.out","w",stdout);</span></span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;k);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt;= n ; ++i)</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;p[i].a,&amp;p[i].b,&amp;p[i].c) , p[i].id = i;</span><br><span class="line">    pre();</span><br><span class="line">    CDQ(<span class="number">1</span>,tot,r);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt;= n ; ++i)</span><br><span class="line">        <span class="keyword">if</span>(v[p[i].id])</span><br><span class="line">            ans[p[i].id] += v[p[i].id] - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt;= n ; ++i)</span><br><span class="line">        <span class="keyword">if</span>(dsb[p[i].id])</span><br><span class="line">            ans[p[i].id] = ans[dsb[p[i].id]];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt;= n ; ++i)</span><br><span class="line">        ++c[ans[p[i].id]];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; n ; ++i)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,c[i]);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>明明按理说有了重复元素只需要把每组元素中找出一个代表并且算出数量，然后CDQ，然后再把其他元素加在答案上就行，可是就是过不了！</p>
+<p>时间宝贵，告辞。</p>
+<p>算了还是认真学一下题解的做法吧，毕竟三维偏序还是很重要的。</p>
+<p>开始重构代码。。这次一定要思路清晰哪怕写长一点也不要弄得很难调。</p>
+<p>这也是个教训，假设调试时间过长但是调试难度过大，不妨换个思路哪怕是换个更好的实现都是不错的选择。</p>
+<p>成功用归并排序实现了一下小常数的三维偏序（中间归并一开始居然先归并了左边，注意细节）</p>
+<p>Code：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 100005</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxv 200005</span></span><br><span class="line"><span class="keyword">int</span> n , k , bit[maxv] , tot , c[maxn] , ans[maxn];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> x , y , z , w , id;</span><br><span class="line">	<span class="keyword">bool</span> <span class="keyword">operator</span>&lt;(<span class="keyword">const</span> Node&amp; g)<span class="keyword">const</span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(x == g.x &amp;&amp; y == g.y) <span class="keyword">return</span> z &lt; g.z;</span><br><span class="line">		<span class="keyword">if</span>(x == g.x) <span class="keyword">return</span> y &lt; g.y;</span><br><span class="line">		<span class="keyword">return</span> x &lt; g.x;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;tmp[maxn] , num[maxn] ,  b[maxn];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pre</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">std</span>::sort(num+<span class="number">1</span>,num+n+<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">int</span> ct = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt;= n ; ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(num[i].x == num[i+<span class="number">1</span>].x &amp;&amp; num[i].y == num[i+<span class="number">1</span>].y &amp;&amp; num[i].z == num[i+<span class="number">1</span>].z)</span><br><span class="line">			++ct;</span><br><span class="line">		<span class="keyword">else</span> ++ct , b[++tot] = num[i] , b[tot].w = ct , b[tot].id = tot, ct = <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> pos , <span class="keyword">int</span> v)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>( ; pos &lt;= k ; pos += pos &amp; -pos)</span><br><span class="line">		bit[pos] += v;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> pos)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>( ; pos  ; pos -= pos &amp; -pos)</span><br><span class="line">		ans += bit[pos];</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CDQ</span><span class="params">(<span class="keyword">int</span> l , <span class="keyword">int</span> r , Node* pt)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(l == r) <span class="keyword">return</span> ;</span><br><span class="line">	<span class="keyword">int</span> mid = l + r &gt;&gt; <span class="number">1</span> , L = l , R = mid + <span class="number">1</span> , ld = l;</span><br><span class="line">	CDQ(l , mid , pt) , CDQ(mid + <span class="number">1</span> , r , pt);</span><br><span class="line">	<span class="keyword">while</span>(L &lt;= mid &amp;&amp; R &lt;= r)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(pt[L].y &lt;= pt[R].y)  update(pt[L].z , pt[L].w) , tmp[ld++] = pt[L++];</span><br><span class="line">		<span class="keyword">else</span> ans[pt[R].id] += query(pt[R].z) , tmp[ld++] = pt[R++];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = R ; i &lt;= r ; ++i)</span><br><span class="line">		tmp[ld++] = pt[i] , ans[pt[i].id] += query(pt[i].z);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = L ; i &lt;= mid ; ++i)</span><br><span class="line">		tmp[ld++] = pt[i];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = l ; i &lt; L ; ++i)</span><br><span class="line">		update(pt[i].z , -pt[i].w);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = l ; i &lt;= r ; ++i)</span><br><span class="line">		pt[i] = tmp[i];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;k);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt;= n ; ++i)</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;num[i].x , &amp;num[i].y , &amp;num[i].z) , num[i].id = i;</span><br><span class="line">	pre();</span><br><span class="line">	CDQ(<span class="number">1</span>,tot,b);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt;= tot; ++i)</span><br><span class="line">		c[b[i].w + ans[b[i].id] - <span class="number">1</span>] += b[i].w;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; n ; ++i)</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,c[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="莫队算法学习笔记"><a href="#莫队算法学习笔记" class="headerlink" title="莫队算法学习笔记"></a>莫队算法学习笔记</h1><p>Mostly from Sengxian and other great posts. Thanks</p>
+<p>先声明一下，所有代码区间均为左闭右开 $[l, r)$，点的下标均从 0 开始。</p>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>莫队算法是由莫涛提出的算法，可以解决一类离线区间询问问题，适用性极为广泛。同时将其加以扩展，便能轻松处理树上路径询问以及支持修改操作。</p>
+<h2 id="形式"><a href="#形式" class="headerlink" title="形式"></a>形式</h2><h2 id="普通莫队"><a href="#普通莫队" class="headerlink" title="普通莫队"></a>普通莫队</h2><p>对于序列上的区间询问问题，如果从 $[l, r]$的答案能够 $O(1)$扩展到 $[l - 1, r], [l + 1, r],[l, r + 1],[l, r - 1] $的答案，那么可以在 $O(n\sqrt n)$ 的复杂度内求出所有询问的答案。</p>
+<p><strong>实现：</strong>离线后排序，顺序处理每个询问，暴力从上一个区间的答案转移到下一个区间答案。<br><strong>排序方法：</strong>设定块的长度为 $S$，按照 ($\lfloor\frac l S\rfloor, r$) 二元组从小到大排序。<br><strong>复杂度分析：</strong>设序列长度为 $n$，询问个数为 $m$。可以发现从 $(l_1, r_1)$ 转移到 $(l_2, r_2)$ 的代价为他们之间的曼哈顿距离。对于每一个询问序列中的每一个块（第一关键字相同），整个块内纵坐标最多变化 $n$ 长度（纵坐标必然单调不减），对于每个询问，横坐标最多变化 $S$。一共有 $\frac nS$​ 个块，相邻块之间转移的复杂度为 $O(n)$，所以复杂度为 $O(\frac {n^2} S + mS + \frac {n^2} S)$，不妨$n, m$ 同阶，取 $S = \sqrt n$ 时可达到最优复杂度 $O(n\sqrt n)$。</p>
+<h3 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码"></a>伪代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> l = <span class="number">0</span>, r = <span class="number">0</span>, nowAns = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">move</span><span class="params">(<span class="keyword">int</span> pos, <span class="keyword">int</span> sign)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// update nowAns</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    BLOCK_SIZE = <span class="keyword">int</span>(<span class="built_in">ceil</span>(<span class="built_in">pow</span>(n, <span class="number">0.5</span>)));</span><br><span class="line">      sort(querys, querys + m);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; ++i) &#123;</span><br><span class="line">        <span class="keyword">const</span> query &amp;q = querys[i];</span><br><span class="line">        <span class="keyword">while</span> (l &gt; q.l) move(--l, <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">while</span> (r &lt; q.r) move(r++, <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">while</span> (l &lt; q.l) move(l++, <span class="number">-1</span>);</span><br><span class="line">        <span class="keyword">while</span> (r &gt; q.r) move(--r, <span class="number">-1</span>);</span><br><span class="line">        ans[q.id] = nowAns;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="带修改莫队"><a href="#带修改莫队" class="headerlink" title="带修改莫队"></a>带修改莫队</h3><p>考虑普通莫队加入修改操作，如果修改操作可以$O(1)$的应用以及撤销（同时也要维护当前区间的答案），那么可以在 $O(n^{\frac 5 3})$ 的复杂度内求出所有询问的答案。</p>
+<p><strong>实现：</strong>离线后排序，顺序遍历询问，先将时间转移到当前询问的时间，然后再像普通莫队一样转移区间。<br><strong>排序方法：</strong>设定块的长度为 $S_1$​ 和 $S_2$，按照 ($\lfloor\frac l {S_1}\rfloor, \lfloor\frac r {S_2}\rfloor, t$) 的三元组小到大排序，其中 $t $表示这个询问的时刻之前经历过了几次修改操作。<br><strong>复杂度分析：</strong>考虑询问序列中的每个小块，小块内每个询问的一二关键字相同。在这个小块内，显然 $t$ 最多变化 $m$，对于每个询问，$l, r$ 最多变化 $S_1$ 和 $S_2$，一共有 $\frac {n^2} {S_1S_2}$ 个这样的块，相邻块之间转移的复杂度为 $O(n)$（这里指的三个指针的转移复杂度，不难理解吧？），总复杂度就是 $O(mS_1 + mS_2 + \frac {n^2m} {S_1S_2} + \frac {n^3}{S_1S_2})$，不妨设 $n, m$同阶，取 $S_1 = S_2 = n ^ {\frac 2 3}$ 时可达到最优复杂度  $O(n^{\frac 5 3})$</p>
+<hr>
+<p>原作者Sengxian的分析好棒哦，让每个块组合（有$\frac{n^2}{S_1S_2}$个）的$l,r,t$的复杂度均达到最大。</p>
+<p>我们还有一种简单些的。</p>
+<p>考虑每个左端点的块，右端点必定单调不减，$t$每个询问最坏是$O(m)$</p>
+<p>设块长$S$,有$n/S$块</p>
+<p>因此右端点的复杂度是$2\frac{N^2}{S}$</p>
+<p>左端点每次在块内最多变化$S$，所以复杂度是$O(mS)$</p>
+<p>所以最后复杂度就是$O(mS+2\frac{N^2}{S}+m^2)$</p>
+<p>恭喜喜提时间复杂度爆炸！</p>
+<p>所以我们怎么优化$t​$的复杂度呢？<br>我们需要将$r​$也分块，可以证明最后块长和左端点一样（主要是懒得再写一个字母了qwq）</p>
+<p>我终于体会到什么叫做平衡了，我们在普通莫队之所以不把第一维严格升序，是因为第二维复杂度会爆炸。</p>
+<p>因此我们让一二维的指针每次都保持在一个可以接受的复杂度，化乘法为加法。尽量优化了询问间的曼哈顿距离。</p>
+<p>我居然用了这么久才想明白这个问题。显然上面的推导十分的高明。</p>
+<p>不过既然块之间的复杂度转移是$O(n)$,那最后的复杂度应该是</p>
+<p>$O(mS_1 + mS_2 + \frac {n^2m} {S_1S_2} + \frac {n^3} {S_1S_2})$</p>
+<p>反正最后确实算的都对。</p>
+<p>我个sb又花了2018.12.24的一晚上搞明白这东西。。。。。</p>
+<p>啊，这位作者居然告诉我真是写错了，那我这个应该是对的。</p>
+<p>突然挺高兴。</p>
+<h3 id="Code"><a href="#Code" class="headerlink" title="Code:"></a>Code:</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> l = <span class="number">0</span>, r = <span class="number">0</span>, t = <span class="number">0</span>, nowAns = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">move</span><span class="params">(<span class="keyword">int</span> pos, <span class="keyword">int</span> sign)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// update nowAns</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">moveTime</span><span class="params">(<span class="keyword">int</span> t, <span class="keyword">int</span> sign)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// apply or revoke modification</span></span><br><span class="line">    <span class="comment">// update nowAns</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    BLOCK_SIZE = <span class="keyword">int</span>(<span class="built_in">ceil</span>(<span class="built_in">pow</span>(n, <span class="number">2.0</span> / <span class="number">3</span>)));</span><br><span class="line">    sort(querys, querys + m);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; q1; ++i) &#123;</span><br><span class="line">        <span class="keyword">const</span> query q = querys[i];</span><br><span class="line">        <span class="keyword">while</span> (t &lt; q.t) moveTime(t++, <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">while</span> (t &gt; q.t) moveTime(--t, <span class="number">-1</span>);</span><br><span class="line">        <span class="keyword">while</span> (l &lt; q.l) move(l++, <span class="number">-1</span>);</span><br><span class="line">        <span class="keyword">while</span> (l &gt; q.l) move(--l, <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">while</span> (r &lt; q.r) move(r++, <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">while</span> (r &gt; q.r) move(--r, <span class="number">-1</span>);</span><br><span class="line">        ans[q.id] = nowAns;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="树上莫队"><a href="#树上莫队" class="headerlink" title="树上莫队"></a>树上莫队</h2><p>对于树上的路径询问问题，如果能够在 $O(1)$ 的时间内加入、删除一个点的贡献，那么就可在 $O(n\sqrt n)$ 的复杂度内求出所有询问的答案。</p>
+<p><strong>实现：</strong>离线后排序，顺序遍历询问，暴力转移路径。</p>
+<p>如何转移路径？设 $T_u$ 为 $u$ 到根的路径上边的集合，那么 $u$ 到 $v$ 的路径上边的集合就是 $T_u \bigtriangleup T_v$（$\bigtriangleup$ 是对称差）。我们要从$ u\rightarrow v$ 转移到 $u’\rightarrow v’$，等价于这样的转移：</p>
+<p>$T_u \bigtriangleup T_v \rightarrow T_{u’} \bigtriangleup T_{v’}$</p>
+<p>根据对称差的性质，有 $T_u \bigtriangleup T_u \bigtriangleup T_{u’} = T_{u’}$，所以只需要如下变换即可：</p>
+<p>$T_u \bigtriangleup T_v \bigtriangleup (T_u \bigtriangleup T_{u’}) \bigtriangleup (T_v \bigtriangleup T_{v’}) = T_{u’}\bigtriangleup T_{v’}$</p>
+<p>落实到程序上面，用 $\mathrm{in}[u]$ 记录点 $u$ 到父亲的边有没有被算进集合，从 $u\rightarrow v$ 转移到 $u’\rightarrow v’$ 的时候，暴力遍历路径 $u \rightarrow u’$ 和路径 $v \rightarrow v’$ 上的边，如果一条边已经加入，那么删掉它，如果没有加入，就加入它。这样就实现了对称差运算。</p>
+<p><strong>排序方法：</strong>按照 <a href="https://blog.sengxian.com/solutions/bzoj-1086" target="_blank" rel="noopener">BZOJ 1086</a> 的方法将树分块，设定块的大小为 $S$。按照 $(\mathrm{blockID}(u), \mathrm{dfn}(v))$ 的二元组从小到大排序。<br><strong>复杂度分析：</strong>有两种块，一个是树上的块，一个是询问序列中的块（第一关键字相同）。我们单独考虑询问序列中的每个块。每个询问中的 $u$ 属于同一个树上的块。先考虑对于 $u$ 的移动，由于树上的块内任意两个点之间的路径长度是 $O(S)$ 的，所以每个询问，$u$ 点移动的路径长度为 $O(S)$。对于 $v$ 的移动，块内每个询问的 $\mathrm{dfn}(v)$ 是递增的，我们知道，顺序走一边 DFS 序上的每个点，相当于每条边都被走了 2 次，所以每个块中 $v$ 移动的路径长度是 $O(n)$ 的。一共有 $O(\frac n S)$) 个块，相邻块之间转移的复杂度为 $O(n)$，总复杂度：$O(mS + \frac {n^2} S + \frac {n^2} S)$，不妨设 $n, m$ 同阶，取 $S = \sqrt n$ 可达到最优复杂度 $O(n\sqrt n)$。</p>
+<h3 id="Code-1"><a href="#Code-1" class="headerlink" title="Code:"></a>Code:</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> u = <span class="number">0</span>, v = <span class="number">0</span>, nowAns = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">bool</span> in[MAX_N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">flip</span><span class="params">(<span class="keyword">int</span> u)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// if u in S: remove u</span></span><br><span class="line">    <span class="comment">// else insert u</span></span><br><span class="line">    <span class="comment">// update nowAns</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">move</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> lca = LCA(u, v);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> cur = u; cur != lca; cur = anc[<span class="number">0</span>][cur])</span><br><span class="line">        flip(cur);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> cur = v; cur != lca; cur = anc[<span class="number">0</span>][cur])</span><br><span class="line">        flip(cur);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    BLOCK_SIZE = <span class="keyword">int</span>(<span class="built_in">ceil</span>(<span class="built_in">pow</span>(n, <span class="number">0.5</span>)));</span><br><span class="line">    sort(querys, querys + m);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; ++i) &#123;</span><br><span class="line">        <span class="keyword">const</span> query &amp;q = querys[i];</span><br><span class="line">        <span class="keyword">int</span> lca = LCA(q.u, q.v);</span><br><span class="line">        move(u, q.u), move(v, q.v);</span><br><span class="line">        ans[q.id] = nowAns;</span><br><span class="line">        u = q.u, v = q.v;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="树上带修改莫队"><a href="#树上带修改莫队" class="headerlink" title="树上带修改莫队"></a>树上带修改莫队</h2><p>考虑树上莫队带修改，如果能$O(1)$ 的应用以及撤销修改，那么可以在 $O(n^{\frac 5 3})$ 的复杂度内求出所有询问的答案。思路与普通带修改莫队是类似的。</p>
+<p><strong>实现：</strong>离线后排序，顺序遍历询问，先将时间转移到当前询问的时间，接着暴力转移路径。<br><strong>排序方法：</strong>将树分块，设定块的大小为$S$。按照 $(\mathrm{blockID}(u), \mathrm{blockID}(v), t)$ 的三元组从小到大排序。<br><strong>复杂度分析：</strong>我们考虑询问序列中的每个块（一二关键字相同），每个询问 $u $和 $v$ 移动的距离都是 $O(S)$ 的，整个块时间最多变化 $m$。一共有 $O(\frac {n^2} {s^2})$ 个块，相邻块之间转移的复杂度为 $O(n)$，总复杂度：$O(mS + mS + \frac {n^2m} {s^2} + \frac {n^2m} {s^2})$，不妨设 $n, m$同阶，取 $S = n ^ {\frac 2 3}$ 时可达到最优复杂度 $O(n^{\frac 5 3})$。</p>
+<h3 id="Code-2"><a href="#Code-2" class="headerlink" title="Code:"></a>Code:</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> u = <span class="number">0</span>, v = <span class="number">0</span>, t = <span class="number">0</span>, nowAns = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">bool</span> in[MAX_N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">flip</span><span class="params">(<span class="keyword">int</span> u)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// if u in S: remove u</span></span><br><span class="line">    <span class="comment">// else insert u</span></span><br><span class="line">    <span class="comment">// update nowAns</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">moveTime</span><span class="params">(<span class="keyword">int</span> t, <span class="keyword">int</span> sign)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// apply or revoke modifications</span></span><br><span class="line">    <span class="comment">// update nowAns</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">move</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> lca = ::lca(u, v);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> cur = u; cur != lca; cur = anc[<span class="number">0</span>][cur])</span><br><span class="line">        flip(cur);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> cur = v; cur != lca; cur = anc[<span class="number">0</span>][cur])</span><br><span class="line">        flip(cur);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    BLOCK_SIZE = <span class="keyword">int</span>(<span class="built_in">ceil</span>(<span class="built_in">pow</span>(n, <span class="number">2.0</span> / <span class="number">3</span>)));</span><br><span class="line">    sort(querys, querys + m);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; q2; ++i) &#123;</span><br><span class="line">        <span class="keyword">const</span> query q = querys[i];</span><br><span class="line">        <span class="keyword">while</span> (t &lt; q.t) moveTime(t++, <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">while</span> (t &gt; q.t) moveTime(--t, <span class="number">-1</span>);</span><br><span class="line">        <span class="keyword">int</span> lca = LCA(q.u, q.v);</span><br><span class="line">        move(q.u, u), move(q.v, v);</span><br><span class="line">        ans[q.id] = nowAns;</span><br><span class="line">        u = q.u, v = q.v;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>还有四道例题尽在：<a href="https://blog.sengxian.com/algorithms/mo-s-algorithm" target="_blank" rel="noopener">https://blog.sengxian.com/algorithms/mo-s-algorithm</a></p>
+<p>好吧说实话我好像只看懂了第一个，明天做道莫队的题。。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/lucas-可持久化-莫队/" rel="tag"># lucas 可持久化 莫队</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/22/2018.12.22/" rel="next" title="Post 28">
+                <i class="fa fa-chevron-left"></i> Post 28
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/24/2018.12.24/" rel="prev" title="Post 30">
+                Post 30 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">RBZ</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">98</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">56</span>
+                    <span class="site-state-item-name">Tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#「SHOI2015」超能粒子炮・改"><span class="nav-number">1.</span> <span class="nav-text">「SHOI2015」超能粒子炮・改</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输入格式"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输出格式"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样例"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">样例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样例输入"><span class="nav-number">1.0.0.5.</span> <span class="nav-text">样例输入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样例输出"><span class="nav-number">1.0.0.6.</span> <span class="nav-text">样例输出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据范围与提示"><span class="nav-number">1.0.0.7.</span> <span class="nav-text">数据范围与提示</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#题解"><span class="nav-number">1.1.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#【模板】三维偏序（陌上花开）"><span class="nav-number">2.</span> <span class="nav-text">【模板】三维偏序（陌上花开）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目背景"><span class="nav-number">2.1.</span> <span class="nav-text">题目背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题目描述-1"><span class="nav-number">2.2.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入输出格式"><span class="nav-number">2.3.</span> <span class="nav-text">输入输出格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入输出样例"><span class="nav-number">2.4.</span> <span class="nav-text">输入输出样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#说明"><span class="nav-number">2.5.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题解-1"><span class="nav-number">2.6.</span> <span class="nav-text">题解</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#莫队算法学习笔记"><span class="nav-number">3.</span> <span class="nav-text">莫队算法学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">3.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#形式"><span class="nav-number">3.2.</span> <span class="nav-text">形式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#普通莫队"><span class="nav-number">3.3.</span> <span class="nav-text">普通莫队</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#伪代码"><span class="nav-number">3.3.1.</span> <span class="nav-text">伪代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#带修改莫队"><span class="nav-number">3.3.2.</span> <span class="nav-text">带修改莫队</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Code"><span class="nav-number">3.3.3.</span> <span class="nav-text">Code:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#树上莫队"><span class="nav-number">3.4.</span> <span class="nav-text">树上莫队</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Code-1"><span class="nav-number">3.4.1.</span> <span class="nav-text">Code:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#树上带修改莫队"><span class="nav-number">3.5.</span> <span class="nav-text">树上带修改莫队</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Code-2"><span class="nav-number">3.5.1.</span> <span class="nav-text">Code:</span></a></li></ol></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+    
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">RBZ</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.5.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+    
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.5.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.5.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.5.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="树链剖分 树链剖分 就是对一棵树分成几条链，把树形变为线性，减少处理难度需要处理的问题：  将树从x到y结点最短路径上所有节点的值都加上z 求树从x到y结点最短路径上所有节点的值之和 将以x为根节点的子树内所有节点值都加上z 求以x为根节点的子树内所有节点值之和  概念  重儿子：对于每一个非叶子节点，它的儿子中 以那个儿子为根的子树节点数最大的儿子 为该节点的重儿子 (Ps: 感谢@shzr大佬">
+<meta name="keywords" content="树链剖分">
+<meta property="og:type" content="article">
+<meta property="og:title" content="树链剖分HPD学习笔记">
+<meta property="og:url" content="http://yoursite.com/2018/11/17/BEF 4/index.html">
+<meta property="og:site_name" content="RBZ&#39;s blog">
+<meta property="og:description" content="树链剖分 树链剖分 就是对一棵树分成几条链，把树形变为线性，减少处理难度需要处理的问题：  将树从x到y结点最短路径上所有节点的值都加上z 求树从x到y结点最短路径上所有节点的值之和 将以x为根节点的子树内所有节点值都加上z 求以x为根节点的子树内所有节点值之和  概念  重儿子：对于每一个非叶子节点，它的儿子中 以那个儿子为根的子树节点数最大的儿子 为该节点的重儿子 (Ps: 感谢@shzr大佬">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2018/11/17/BEF%204/Images/main-qimg-8bab887bb3bcd8e59dbe6868b2b125c8-1538122333796.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/17/BEF%204/Images/main-qimg-ea32975eb22dbc42b68ab48246842cba-1538122357376.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/17/BEF%204/Images/1538124982665.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/17/BEF%204/Images/1538125041691.png">
+<meta property="og:updated_time" content="2018-11-17T08:18:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="树链剖分HPD学习笔记">
+<meta name="twitter:description" content="树链剖分 树链剖分 就是对一棵树分成几条链，把树形变为线性，减少处理难度需要处理的问题：  将树从x到y结点最短路径上所有节点的值都加上z 求树从x到y结点最短路径上所有节点的值之和 将以x为根节点的子树内所有节点值都加上z 求以x为根节点的子树内所有节点值之和  概念  重儿子：对于每一个非叶子节点，它的儿子中 以那个儿子为根的子树节点数最大的儿子 为该节点的重儿子 (Ps: 感谢@shzr大佬">
+<meta name="twitter:image" content="http://yoursite.com/2018/11/17/BEF%204/Images/main-qimg-8bab887bb3bcd8e59dbe6868b2b125c8-1538122333796.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/11/17/BEF 4/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>树链剖分HPD学习笔记 | RBZ's blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">RBZ's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">A OIer</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Suche</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/17/BEF 4/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="RBZ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RBZ's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">树链剖分HPD学习笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+		
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2018-11-17 00:00:00 / Updated at: 16:18:36" itemprop="dateCreated datePublished" datetime="2018-11-17T00:00:00+08:00">2018-11-17</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>树链剖分</strong></p>
+<p>树链剖分 就是对一棵树分成几条链，把树形变为线性，减少处理难度<br>需要处理的问题：</p>
+<ul>
+<li>将树从x到y结点最短路径上所有节点的值都加上z</li>
+<li>求树从x到y结点最短路径上所有节点的值之和</li>
+<li>将以x为根节点的子树内所有节点值都加上z</li>
+<li>求以x为根节点的子树内所有节点值之和</li>
+</ul>
+<p><strong>概念</strong></p>
+<ul>
+<li>重儿子：对于每一个非叶子节点，它的儿子中 以那个儿子为根的子树节点数最大的儿子 为该节点的重儿子 (Ps: 感谢<a href="https://home.cnblogs.com/u/shzr/" target="_blank" rel="noopener">@shzr</a>大佬指出我此句话的表达不严谨qwq, 已修改)</li>
+<li>轻儿子：对于每一个非叶子节点，它的儿子中 非重儿子 的剩下所有儿子即为轻儿子</li>
+<li>叶子节点没有重儿子也没有轻儿子（因为它没有儿子。。）</li>
+<li>重边：连接任意两个重儿子的边叫做重边</li>
+<li>轻边：剩下的即为轻边</li>
+<li>重链：相邻重边连起来的 连接一条重儿子 的链叫重链对于叶子节点，若其为轻儿子，则有一条以自己为起点的长度为1的链每一条重链以轻儿子为起点</li>
+</ul>
+<p><strong>dfs1()</strong></p>
+<p>这个dfs要处理几件事情：</p>
+<ul>
+<li>标记每个点的深度dep[]</li>
+<li>标记每个点的父亲fa[]</li>
+<li>标记每个非叶子节点的子树大小(含它自己)</li>
+<li>标记每个非叶子节点的重儿子编号son[]</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">dfs1</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> f,<span class="keyword">int</span> deep)</span></span>&#123;<span class="comment">//x当前节点，f父亲，deep深度 </span></span><br><span class="line">    dep[x]=deep;<span class="comment">//标记每个点的深度 </span></span><br><span class="line">    fa[x]=f;<span class="comment">//标记每个点的父亲 </span></span><br><span class="line">    siz[x]=<span class="number">1</span>;<span class="comment">//标记每个非叶子节点的子树大小 </span></span><br><span class="line">    <span class="keyword">int</span> maxson=<span class="number">-1</span>;<span class="comment">//记录重儿子的儿子数 </span></span><br><span class="line">    <span class="keyword">for</span>(Rint i=beg[x];i;i=nex[i])&#123;</span><br><span class="line">        <span class="keyword">int</span> y=to[i];</span><br><span class="line">        <span class="keyword">if</span>(y==f)<span class="keyword">continue</span>;<span class="comment">//若为父亲则continue </span></span><br><span class="line">        dfs1(y,x,deep+<span class="number">1</span>);<span class="comment">//dfs其儿子 </span></span><br><span class="line">        siz[x]+=siz[y];<span class="comment">//把它的儿子数加到它身上 </span></span><br><span class="line">        <span class="keyword">if</span>(siz[y]&gt;maxson)son[x]=y,maxson=siz[y];<span class="comment">//标记每个非叶子节点的重儿子编号 </span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;<span class="comment">//变量解释见最下面</span></span><br></pre></td></tr></table></figure>
+<p><strong>dfs2()</strong></p>
+<p>这个dfs2也要预处理几件事情</p>
+<ul>
+<li>标记每个点的新编号</li>
+<li>赋值每个点的初始值到新编号上</li>
+<li>处理每个点所在链的顶端</li>
+<li>处理每条链</li>
+</ul>
+<p><strong>顺序：先处理重儿子再处理轻儿子</strong>，理由后面说</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">dfs2</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> topf)</span></span>&#123;<span class="comment">//x当前节点，topf当前链的最顶端的节点 </span></span><br><span class="line">    id[x]=++cnt;<span class="comment">//标记每个点的新编号 </span></span><br><span class="line">    wt[cnt]=w[x];<span class="comment">//把每个点的初始值赋到新编号上来 </span></span><br><span class="line">    top[x]=topf;<span class="comment">//这个点所在链的顶端 </span></span><br><span class="line">    <span class="keyword">if</span>(!son[x])<span class="keyword">return</span>;<span class="comment">//如果没有儿子则返回 </span></span><br><span class="line">    dfs2(son[x],topf);<span class="comment">//按先处理重儿子，再处理轻儿子的顺序递归处理 </span></span><br><span class="line">    <span class="keyword">for</span>(Rint i=beg[x];i;i=nex[i])&#123;</span><br><span class="line">        <span class="keyword">int</span> y=to[i];</span><br><span class="line">        <span class="keyword">if</span>(y==fa[x]||y==son[x])<span class="keyword">continue</span>;</span><br><span class="line">        dfs2(y,y);<span class="comment">//对于每一个轻儿子都有一条从它自己开始的链 </span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;<span class="comment">//变量解释见最下面</span></span><br></pre></td></tr></table></figure>
+<p><strong>处理问题</strong></p>
+<p><strong>Attention 重要的来了！！！</strong><br>前面说到dfs2的顺序是先处理重儿子再处理轻儿子<br>我们来模拟一下：</p>
+<p><img src="Images/main-qimg-8bab887bb3bcd8e59dbe6868b2b125c8-1538122333796.png" alt="img"></p>
+<ul>
+<li>因为顺序是先重再轻，所以每一条重链的新编号是连续的</li>
+<li>因为是dfs，所以每一个子树的新编号也是连续的</li>
+</ul>
+<p>现在回顾一下我们要处理的问题</p>
+<ul>
+<li>处理任意两点间路径上的点权和</li>
+<li>处理一点及其子树的点权和</li>
+<li>修改任意两点间路径上的点权</li>
+<li>修改一点及其子树的点权</li>
+</ul>
+<p>1、当我们要处理任意两点间路径时：<br>设所在链顶端的深度更深的那个点为x点</p>
+<ul>
+<li>ans加上x点到x所在链顶端 这一段区间的点权和</li>
+<li>把x跳到x所在链顶端的那个点的上面一个点</li>
+</ul>
+<p>不停执行这两个步骤，直到两个点处于一条链上，这时再加上此时两个点的区间和即可</p>
+<p><img src="Images/main-qimg-ea32975eb22dbc42b68ab48246842cba-1538122357376.png" alt="img"></p>
+<p>这时我们注意到，我们所要处理的所有区间均为连续编号(新编号)，于是想到线段树，用线段树处理连续编号区间和<br>每次查询时间复杂度为</p>
+<script type="math/tex; mode=display">
+O(log^2n)</script><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">qRange</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(top[x]!=top[y])&#123;<span class="comment">//当两个点不在同一条链上 </span></span><br><span class="line">        <span class="keyword">if</span>(dep[top[x]]&lt;dep[top[y]])swap(x,y);<span class="comment">//把x点改为所在链顶端的深度更深的那个点</span></span><br><span class="line">        res=<span class="number">0</span>;</span><br><span class="line">        query(<span class="number">1</span>,<span class="number">1</span>,n,id[top[x]],id[x]);<span class="comment">//ans加上x点到x所在链顶端 这一段区间的点权和</span></span><br><span class="line">        ans+=res;</span><br><span class="line">        ans%=mod;<span class="comment">//按题意取模 </span></span><br><span class="line">        x=fa[top[x]];<span class="comment">//把x跳到x所在链顶端的那个点的上面一个点</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//直到两个点处于一条链上</span></span><br><span class="line">    <span class="keyword">if</span>(dep[x]&gt;dep[y])swap(x,y);<span class="comment">//把x点深度更深的那个点</span></span><br><span class="line">    res=<span class="number">0</span>;</span><br><span class="line">    query(<span class="number">1</span>,<span class="number">1</span>,n,id[x],id[y]);<span class="comment">//这时再加上此时两个点的区间和即可</span></span><br><span class="line">    ans+=res;</span><br><span class="line">    <span class="keyword">return</span> ans%mod;</span><br><span class="line">&#125;<span class="comment">//变量解释见最下面</span></span><br></pre></td></tr></table></figure>
+<p>2、处理一点及其子树的点权和：<br>想到记录了每个非叶子节点的子树大小(含它自己)，并且每个子树的新编号都是连续的<br>于是直接线段树区间查询即可<br>时间复杂度为O(logn)O(log⁡n)</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">qSon</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    res=<span class="number">0</span>;</span><br><span class="line">    query(<span class="number">1</span>,<span class="number">1</span>,n,id[x],id[x]+siz[x]<span class="number">-1</span>);<span class="comment">//子树区间右端点为id[x]+siz[x]-1 </span></span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当然，区间修改就和区间查询一样的啦~~</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">updRange</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y,<span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">    k%=mod;</span><br><span class="line">    <span class="keyword">while</span>(top[x]!=top[y])&#123;</span><br><span class="line">        <span class="keyword">if</span>(dep[top[x]]&lt;dep[top[y]])swap(x,y);</span><br><span class="line">        update(<span class="number">1</span>,<span class="number">1</span>,n,id[top[x]],id[x],k);</span><br><span class="line">        x=fa[top[x]];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(dep[x]&gt;dep[y])swap(x,y);</span><br><span class="line">    update(<span class="number">1</span>,<span class="number">1</span>,n,id[x],id[y],k);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">updSon</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">    update(<span class="number">1</span>,<span class="number">1</span>,n,id[x],id[x]+siz[x]<span class="number">-1</span>,k);</span><br><span class="line">&#125;<span class="comment">//变量解释见最下面</span></span><br></pre></td></tr></table></figure>
+<p>MD:</p>
+<ol>
+<li><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> <span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="number">2.</span> <span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="number">3.</span> <span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="number">4.</span> <span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="number">5.</span> <span class="meta">#<span class="meta-keyword">define</span> maxn 100005</span></span><br><span class="line"><span class="number">6.</span> <span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="number">7.</span> <span class="meta">#<span class="meta-keyword">define</span> ls(x) ((x)&lt;&lt;1)</span></span><br><span class="line"><span class="number">8.</span> <span class="meta">#<span class="meta-keyword">define</span> rs(x) ((x)&lt;&lt;1|1)</span></span><br><span class="line"><span class="number">9.</span> <span class="meta">#<span class="meta-keyword">define</span> pushup(x) tree[(x)] = tree[ls((x))] + tree[rs((x))]</span></span><br><span class="line"><span class="number">10.</span> ll dep[maxn] , f[maxn] , sz[maxn] , n , head[maxn] , idx[maxn] , val[maxn] , hs[maxn] , m , r , p , cnt , tot , v[maxn] , top[maxn] , tree[maxn&lt;&lt;<span class="number">2</span>] , tag[maxn&lt;&lt;<span class="number">2</span>];</span><br><span class="line"><span class="number">11.</span> <span class="class"><span class="keyword">struct</span> <span class="title">edge</span>&#123;</span></span><br><span class="line"><span class="number">12.</span>     ll next , to;</span><br><span class="line"><span class="number">13.</span> &#125;e[maxn*<span class="number">2</span>];</span><br><span class="line"><span class="number">14.</span> <span class="function"><span class="keyword">void</span> <span class="title">dfs1</span><span class="params">(ll x , ll fx)</span></span>;<span class="comment">//f[],sz[],dep[],hs[]</span></span><br><span class="line"><span class="number">15.</span> <span class="function"><span class="keyword">void</span> <span class="title">dfs2</span><span class="params">(ll x , ll topV)</span></span>;</span><br><span class="line"><span class="number">16.</span> <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(ll x , ll y)</span></span>;</span><br><span class="line"><span class="number">17.</span> <span class="function">ll <span class="title">query</span><span class="params">(ll L , ll R , ll l , ll r , ll node)</span></span>;</span><br><span class="line"><span class="number">18.</span> <span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(ll L , ll R , ll l , ll r , ll node , ll val)</span></span>;</span><br><span class="line"><span class="number">19.</span> <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pushdown</span><span class="params">(ll node , ll ln , ll rn)</span></span>;</span><br><span class="line"><span class="number">20.</span> <span class="function">ll <span class="title">qLink</span><span class="params">(ll x , ll y)</span></span>;<span class="comment">// problem request</span></span><br><span class="line"><span class="number">21.</span> <span class="function"><span class="keyword">void</span> <span class="title">updLink</span><span class="params">(ll x ,ll y , ll v)</span></span>;<span class="comment">//preblem request</span></span><br><span class="line"><span class="number">22.</span> <span class="function">ll <span class="title">qST</span><span class="params">(ll x)</span></span>;<span class="comment">//preblem request</span></span><br><span class="line"><span class="number">23.</span> <span class="function"><span class="keyword">void</span> <span class="title">updST</span><span class="params">(ll x , ll v)</span></span>;<span class="comment">//preblem request</span></span><br><span class="line"><span class="number">24.</span> <span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">(ll l , ll r , ll node)</span></span>;</span><br><span class="line"><span class="number">25.</span> <span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line">26. &#123;</span><br><span class="line"><span class="number">27.</span>     <span class="built_in">scanf</span>(<span class="string">"%lld%lld%lld%lld"</span>,&amp;n,&amp;m,&amp;r,&amp;p);</span><br><span class="line"><span class="number">28.</span>     ll x , y , d;</span><br><span class="line"><span class="number">29.</span>     <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt;= n ; ++i)</span><br><span class="line"><span class="number">30.</span>         <span class="built_in">scanf</span>(<span class="string">"%lld"</span>,&amp;val[i]);</span><br><span class="line"><span class="number">31.</span>     <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt;= n<span class="number">-1</span> ; ++i)</span><br><span class="line"><span class="number">32.</span>     &#123;</span><br><span class="line"><span class="number">33.</span>         <span class="built_in">scanf</span>(<span class="string">"%lld%lld"</span>,&amp;x,&amp;y);</span><br><span class="line"><span class="number">34.</span>         add(x,y) , add(y,x);</span><br><span class="line"><span class="number">35.</span>     &#125;</span><br><span class="line"><span class="number">36.</span>     <span class="comment">// puts("OK");</span></span><br><span class="line"><span class="number">37.</span>     dfs1(r,r);</span><br><span class="line"><span class="number">38.</span>     <span class="comment">// puts("OK");</span></span><br><span class="line"><span class="number">39.</span>     dfs2(r,r);<span class="comment">//root link topv is itself</span></span><br><span class="line"><span class="number">40.</span>     <span class="comment">// puts("OK");</span></span><br><span class="line"><span class="number">41.</span>     build(<span class="number">1</span>,n,<span class="number">1</span>);</span><br><span class="line"><span class="number">42.</span>     <span class="comment">// puts("OK");</span></span><br><span class="line"><span class="number">43.</span>     ll op , xx , yy , zz;</span><br><span class="line"><span class="number">44.</span>     <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt;= m ; ++i)</span><br><span class="line"><span class="number">45.</span>     &#123;</span><br><span class="line"><span class="number">46.</span>         <span class="built_in">scanf</span>(<span class="string">"%lld"</span>,&amp;op);</span><br><span class="line"><span class="number">47.</span>         <span class="keyword">if</span>(op == <span class="number">1</span>) <span class="built_in">scanf</span>(<span class="string">"%lld%lld%lld"</span>,&amp;xx,&amp;yy,&amp;zz) , updLink(xx,yy,zz);</span><br><span class="line"><span class="number">48.</span>         <span class="keyword">else</span> <span class="keyword">if</span>(op == <span class="number">2</span>) <span class="built_in">scanf</span>(<span class="string">"%lld%lld"</span>,&amp;xx,&amp;yy) , <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,qLink(xx,yy));</span><br><span class="line"><span class="number">49.</span>         <span class="keyword">else</span> <span class="keyword">if</span>(op == <span class="number">3</span>) <span class="built_in">scanf</span>(<span class="string">"%lld%lld"</span>,&amp;xx,&amp;zz) , updST(xx,zz);</span><br><span class="line"><span class="number">50.</span>         <span class="keyword">else</span> <span class="built_in">scanf</span>(<span class="string">"%lld"</span>,&amp;xx) , <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,qST(xx));</span><br><span class="line"><span class="number">51.</span>     &#125;</span><br><span class="line"><span class="number">52.</span> &#125;</span><br><span class="line"><span class="number">53.</span> <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(ll x , ll y)</span></span></span><br><span class="line">54. &#123;</span><br><span class="line"><span class="number">55.</span>     e[++cnt].next = head[x];</span><br><span class="line"><span class="number">56.</span>     e[cnt].to = y;</span><br><span class="line"><span class="number">57.</span>     head[x] = cnt;</span><br><span class="line"><span class="number">58.</span> &#125;</span><br><span class="line"><span class="number">59.</span> <span class="function">ll <span class="title">qLink</span><span class="params">(ll x , ll y)</span></span></span><br><span class="line">60. &#123;</span><br><span class="line"><span class="number">61.</span>     ll ans = <span class="number">0</span>;</span><br><span class="line"><span class="number">62.</span>     <span class="keyword">while</span>(top[x] != top[y])</span><br><span class="line"><span class="number">63.</span>     &#123;</span><br><span class="line"><span class="number">64.</span>         <span class="keyword">if</span>(dep[top[x]] &lt; dep[top[y]]) <span class="built_in">std</span>::swap(x,y);</span><br><span class="line"><span class="number">65.</span>         ans += query(idx[top[x]] , idx[x] , <span class="number">1</span> , n , <span class="number">1</span>) % p , ans %= p;</span><br><span class="line"><span class="number">66.</span>         x = f[top[x]];</span><br><span class="line"><span class="number">67.</span>     &#125;</span><br><span class="line"><span class="number">68.</span>     <span class="keyword">if</span>(dep[x] &lt; dep[y]) <span class="built_in">std</span>::swap(x,y);</span><br><span class="line"><span class="number">69.</span>     ans += query(idx[y],idx[x],<span class="number">1</span>,n,<span class="number">1</span>);</span><br><span class="line"><span class="number">70.</span>     <span class="keyword">return</span> ans % p;</span><br><span class="line"><span class="number">71.</span> &#125;</span><br><span class="line"><span class="number">72.</span> <span class="function"><span class="keyword">void</span> <span class="title">updLink</span><span class="params">(ll x , ll y , ll v)</span></span></span><br><span class="line">73. &#123;</span><br><span class="line"><span class="number">74.</span>     <span class="keyword">while</span>(top[x] != top[y])</span><br><span class="line"><span class="number">75.</span>     &#123;</span><br><span class="line"><span class="number">76.</span>         <span class="keyword">if</span>(dep[top[x]] &lt; dep[top[y]]) <span class="built_in">std</span>::swap(x,y);</span><br><span class="line"><span class="number">77.</span>         update(idx[top[x]] , idx[x] , <span class="number">1</span> , n , <span class="number">1</span> , v);</span><br><span class="line"><span class="number">78.</span>         x = f[top[x]];</span><br><span class="line"><span class="number">79.</span>     &#125;</span><br><span class="line"><span class="number">80.</span>     <span class="keyword">if</span>(dep[x] &gt; dep[y]) <span class="built_in">std</span>::swap(x,y);</span><br><span class="line"><span class="number">81.</span>     update(idx[x] , idx[y] , <span class="number">1</span> , n , <span class="number">1</span> , v);</span><br><span class="line"><span class="number">82.</span> &#125;</span><br><span class="line"><span class="number">83.</span> <span class="function">ll <span class="title">qST</span><span class="params">(ll x)</span></span></span><br><span class="line">84. &#123;</span><br><span class="line"><span class="number">85.</span>     ll ans = query(idx[x] , idx[x] + sz[x] - <span class="number">1</span> , <span class="number">1</span> , n , <span class="number">1</span>) % p;</span><br><span class="line"><span class="number">86.</span>     <span class="keyword">return</span> ans;</span><br><span class="line"><span class="number">87.</span> &#125;</span><br><span class="line"><span class="number">88.</span> <span class="function"><span class="keyword">void</span> <span class="title">updST</span><span class="params">(ll x , ll v)</span></span></span><br><span class="line">89. &#123;</span><br><span class="line"><span class="number">90.</span>     update(idx[x] , idx[x] + sz[x] - <span class="number">1</span> , <span class="number">1</span> , n , <span class="number">1</span> , v);</span><br><span class="line"><span class="number">91.</span> &#125;</span><br><span class="line"><span class="number">92.</span> <span class="function"><span class="keyword">void</span> <span class="title">dfs1</span><span class="params">(ll x , ll fx)</span></span></span><br><span class="line">93. &#123;</span><br><span class="line"><span class="number">94.</span>     f[x] = fx;</span><br><span class="line"><span class="number">95.</span>     dep[x] = dep[fx] + <span class="number">1</span>;</span><br><span class="line"><span class="number">96.</span>     sz[x] = <span class="number">1</span>;</span><br><span class="line"><span class="number">97.</span>     ll maxx = <span class="number">-1</span> ;</span><br><span class="line"><span class="number">98.</span>     <span class="keyword">for</span>(ll i = head[x] ; i ; i = e[i].next)</span><br><span class="line"><span class="number">99.</span>         <span class="keyword">if</span>(e[i].to != fx)</span><br><span class="line"><span class="number">100.</span>             dfs1(e[i].to,x) , sz[x] += sz[e[i].to];<span class="comment">//dfs1(e[i].to,x)  not dfs1(e[i].to,fx)!!!!!!!!!!!!!!</span></span><br><span class="line"><span class="number">101.</span>     <span class="keyword">for</span>(<span class="keyword">int</span> i = head[x] ; i ; i = e[i].next)</span><br><span class="line"><span class="number">102.</span>         <span class="keyword">if</span>(sz[e[i].to] &gt; maxx &amp;&amp; e[i].to != fx)</span><br><span class="line"><span class="number">103.</span>             maxx = sz[e[i].to] , hs[x] = e[i].to;</span><br><span class="line"><span class="number">104.</span> &#125;</span><br><span class="line"><span class="number">105.</span> <span class="function"><span class="keyword">void</span> <span class="title">dfs2</span><span class="params">(ll x , ll topV)</span></span></span><br><span class="line">106. &#123;</span><br><span class="line"><span class="number">107.</span>     idx[x] = ++tot;</span><br><span class="line"><span class="number">108.</span>     v[idx[x]] = val[x];</span><br><span class="line"><span class="number">109.</span>     top[x] = topV;</span><br><span class="line"><span class="number">110.</span>     <span class="keyword">if</span>(!hs[x]) <span class="keyword">return</span>;</span><br><span class="line"><span class="number">111.</span>     dfs2(hs[x],topV);</span><br><span class="line"><span class="number">112.</span>     <span class="keyword">for</span>(<span class="keyword">int</span> i = head[x] ; i ; i = e[i].next)</span><br><span class="line"><span class="number">113.</span>         <span class="keyword">if</span>(e[i].to != f[x] &amp;&amp; e[i].to != hs[x])</span><br><span class="line"><span class="number">114.</span>             dfs2(e[i].to , e[i].to);</span><br><span class="line"><span class="number">115.</span> &#125;</span><br><span class="line"><span class="number">116.</span> <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pushdown</span><span class="params">(ll node , ll ln , ll rn)</span></span></span><br><span class="line">117. &#123;</span><br><span class="line"><span class="number">118.</span>     <span class="keyword">if</span>(tag[node])</span><br><span class="line"><span class="number">119.</span>     &#123;</span><br><span class="line"><span class="number">120.</span>         tag[ls(node)] += tag[node] % p , tag[rs(node)] += tag[node] % p;</span><br><span class="line"><span class="number">121.</span>         tree[ls(node)] += tag[node] * ln % p, tree[rs(node)] += tag[node] * rn % p;</span><br><span class="line"><span class="number">122.</span>         tree[ls(node)] %= p , tree[rs(node)] %= p;</span><br><span class="line"><span class="number">123.</span>         tag[node] = <span class="number">0</span>;</span><br><span class="line"><span class="number">124.</span>     &#125;</span><br><span class="line"><span class="number">125.</span> &#125;</span><br><span class="line"><span class="number">126.</span> <span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">(ll l , ll r , ll node)</span></span></span><br><span class="line">127. &#123;</span><br><span class="line"><span class="number">128.</span>     <span class="keyword">if</span>(l == r) &#123;tree[node] = v[l];<span class="keyword">return</span>;&#125;</span><br><span class="line"><span class="number">129.</span>     ll m = l + r &gt;&gt; <span class="number">1</span>;</span><br><span class="line"><span class="number">130.</span>     build(l , m , ls(node));</span><br><span class="line"><span class="number">131.</span>     build(m + <span class="number">1</span> , r , rs(node));</span><br><span class="line"><span class="number">132.</span>     pushup(node);</span><br><span class="line"><span class="number">133.</span> &#125;</span><br><span class="line"><span class="number">134.</span> <span class="function">ll <span class="title">query</span><span class="params">(ll L , ll R , ll l , ll r , ll node)</span></span></span><br><span class="line">135. &#123;</span><br><span class="line"><span class="number">136.</span>     <span class="keyword">if</span>(L &lt;= l &amp;&amp; r &lt;= R) <span class="keyword">return</span> tree[node];</span><br><span class="line"><span class="number">137.</span>     ll m = l + r &gt;&gt; <span class="number">1</span> , ans = <span class="number">0</span>;</span><br><span class="line"><span class="number">138.</span>     pushdown(node , m - l + <span class="number">1</span> , r - m);</span><br><span class="line"><span class="number">139.</span>     <span class="keyword">if</span>(L &lt;= m) ans += query(L , R , l , m , ls(node)) % p , ans %= p;</span><br><span class="line"><span class="number">140.</span>     <span class="keyword">if</span>(R &gt; m)  ans += query(L , R , m + <span class="number">1</span> , r , rs(node)) % p , ans %= p;</span><br><span class="line"><span class="number">141.</span>     <span class="keyword">return</span> ans;</span><br><span class="line"><span class="number">142.</span> &#125;</span><br><span class="line"><span class="number">143.</span> <span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(ll L , ll R , ll l , ll r , ll node , ll v)</span></span></span><br><span class="line">144. &#123;</span><br><span class="line"><span class="number">145.</span>     <span class="keyword">if</span>(L &lt;= l &amp;&amp; r &lt;= R)</span><br><span class="line"><span class="number">146.</span>     &#123;</span><br><span class="line"><span class="number">147.</span>         tree[node] += (r - l + <span class="number">1</span>) * v % p , tree[node] %= p;</span><br><span class="line"><span class="number">148.</span>         tag[node] += v;</span><br><span class="line"><span class="number">149.</span>         <span class="keyword">return</span> ;</span><br><span class="line"><span class="number">150.</span>     &#125;</span><br><span class="line"><span class="number">151.</span>     ll m = l + r &gt;&gt; <span class="number">1</span>;</span><br><span class="line"><span class="number">152.</span>     pushdown(node , m - l + <span class="number">1</span> , r - m);</span><br><span class="line"><span class="number">153.</span>     <span class="keyword">if</span>(L &lt;= m) update(L , R , l , m , ls(node) , v);</span><br><span class="line"><span class="number">154.</span>     <span class="keyword">if</span>(R &gt; m)  update(L , R , m + <span class="number">1</span> , r , rs(node) , v);</span><br><span class="line"><span class="number">155.</span>     pushup(node);</span><br><span class="line"><span class="number">156.</span> &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><strong>简单叙述原理以及对时间复杂度的论述:</strong></p>
+<p>原理就是将树划分成重链轻链，然后通过适当的编号将重链接成序列用线段树维护，而由重儿子和轻儿子的定义可知，对于节点u的轻儿子v，</p>
+<script type="math/tex; mode=display">
+sz[v]<=\frac{1}{2}sz[u]</script><p>，这还是最最坏的情况下（均摊来讲要小得多）,最基本的放缩。</p>
+<p>所以由这个显而易见的结论 ， 我们还知道：</p>
+<p>对于按轻重边划分有如下两条性质：</p>
+<p>1.对于轻边(u,v)，</p>
+<script type="math/tex; mode=display">
+size(v)<=size(u)/2</script><p>2.对于从根到某一点的路径，轻边数不超过</p>
+<script type="math/tex; mode=display">
+O(logn)</script><p>重链数不超过</p>
+<script type="math/tex; mode=display">
+O(logn)</script><p><strong>对性质1进行证明：</strong></p>
+<p>设u有k个子节点，分别为</p>
+<script type="math/tex; mode=display">
+v1,v2,...，vk</script><p>设</p>
+<script type="math/tex; mode=display">
+(u,v1)</script><p>为重边，则其余</p>
+<script type="math/tex; mode=display">
+(u,vi)(i>1)</script><p>为轻边。</p>
+<script type="math/tex; mode=display">
+size(u)=size(v1)+size(v2)+...+size(vk)+1</script><p> (其中k&gt;=2，因为若k=1,则该边必为重边，即不含轻边)</p>
+<script type="math/tex; mode=display">
+size(v1)>=size(vi)(i>1)</script><script type="math/tex; mode=display">
+size(vi)+size(vi)=2∗size(vi)<=size(vi)+size(v1)<=size(u)</script><p>即</p>
+<script type="math/tex; mode=display">
+size(vi)<=size(u)/2</script><p><strong>对性质2进行证明:</strong></p>
+<p>设从root到v的路径中有k条轻边:</p>
+<script type="math/tex; mode=display">
+root−>v1−>v2−>vk−>vroot−>...−>v1−>...−>v2−>...−>vk−>...−>v</script><p>(其中</p>
+<script type="math/tex; mode=display">
+−>v1,−>v2,...,−>vk−>v1,−>v2,...,−>vk</script><p>为轻边)</p>
+<script type="math/tex; mode=display">
+size(vk)>=size(v)>=1</script><script type="math/tex; mode=display">
+size(vk的前趋)>=2∗size(vk)(性质1)>=2</script><p>同理可得：</p>
+<script type="math/tex; mode=display">
+size(vk−1的前趋)>=2∗size(vk的前趋)>=22size(vk−1的前趋)>=2∗size(vk的前趋)>=2^2</script><p>所以有：</p>
+<script type="math/tex; mode=display">
+n=size(root)>=size(v1的前趋)>=2kn=size(root)>=size(v1的前趋)>=2^k</script><p>所以</p>
+<script type="math/tex; mode=display">
+k=O(logn)</script><p>从root到v的路径中有k条轻边，那么路径上其他边即为重边，那么重链数=k+1，所以重链数=O(logn)。</p>
+<p>从上面的阐述中我们也可以理解到为什么树链剖分的常数那么小，因为很显然每一步放缩都是在2个节点并且是在轻重儿子最接近的情况下得出的结论。</p>
+<hr>
+<p>我们看一道树剖的基础题</p>
+<h1 id="HAOI2015-树上操作"><a href="#HAOI2015-树上操作" class="headerlink" title="[HAOI2015]树上操作"></a>[HAOI2015]树上操作</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>有一棵点数为 N 的树，以点 1 为根，且树点有点权。然后有 M 个操作，分为三种：操作 1 ：把某个节点 x 的点权增加 a 。操作 2 ：把某个节点 x 为根的子树中所有点的点权都增加 a 。操作 3 ：询问某个节点 x 到根的路径中所有点的点权和。</p>
+<h2 id="输入输出格式"><a href="#输入输出格式" class="headerlink" title="输入输出格式"></a>输入输出格式</h2><p>输入格式：</p>
+<p>第一行包含两个整数 N, M 。表示点数和操作数。接下来一行 N 个整数，表示树中节点的初始权值。接下来 N-1 行每行两个正整数 from, to ， 表示该树中存在一条边 (from, to) 。再接下来 M 行，每行分别表示一次操作。其中第一个数表示该操作的种类（ 1-3 ） ，之后接这个操作的参数（ x 或者 x a ） 。</p>
+<p>输出格式：</p>
+<p>对于每个询问操作，输出该询问的答案。答案之间用换行隔开。</p>
+<h2 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h2><p>输入样例#1：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">5 5</span><br><span class="line">1 2 3 4 5</span><br><span class="line">1 2</span><br><span class="line">1 4</span><br><span class="line">2 3</span><br><span class="line">2 5</span><br><span class="line">3 3</span><br><span class="line">1 2 1</span><br><span class="line">3 5</span><br><span class="line">2 1 2</span><br><span class="line">3 3</span><br></pre></td></tr></table></figure>
+<p>输出样例#1：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">6</span><br><span class="line">9</span><br><span class="line">13</span><br></pre></td></tr></table></figure>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>对于 100% 的数据， N,M&lt;=100000 ，且所有输入数据的绝对值都不</p>
+<p>会超过 10^6 。</p>
+<p>显然只需要树剖部分功能，并且操作一只需要在线段树上单点修改即可（仅仅是常数优化）。</p>
+<p>Code:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ls(x) ((x)&lt;&lt;1)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rs(x) ((x)&lt;&lt;1|1)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pushup(x) tree[(x)] = tree[ls((x))] + tree[rs((x))]</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 100005</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line">ll n , m , head[maxn] , f[maxn] , cnt , id , idx[maxn] , dep[maxn] , hs[maxn] , sz[maxn] , top[maxn] , val[maxn] , v[maxn] , tree[maxn&lt;&lt;<span class="number">2</span>] , tag[maxn&lt;&lt;<span class="number">2</span>] ;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">edge</span>&#123;</span></span><br><span class="line">    ll next , to;</span><br><span class="line">&#125;e[maxn * <span class="number">2</span>];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(ll x , ll y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    e[++cnt].next = head[x];</span><br><span class="line">    e[cnt].to = y;</span><br><span class="line">    head[x] = cnt;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs1</span><span class="params">(ll x , ll fx)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    f[x] = fx;</span><br><span class="line">    sz[x] = <span class="number">1</span>;</span><br><span class="line">    dep[x] = dep[fx] + <span class="number">1</span>;</span><br><span class="line">    ll maxx = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = head[x] ; i ; i = e[i].next)</span><br><span class="line">        <span class="keyword">if</span>(e[i].to != fx)</span><br><span class="line">            dfs1(e[i].to , x) , sz[x] += sz[e[i].to];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = head[x] ; i ; i = e[i].next)</span><br><span class="line">        <span class="keyword">if</span>(sz[e[i].to] &gt; maxx &amp;&amp; e[i].to != fx)<span class="comment">//attention : e[i].to != fx</span></span><br><span class="line">            maxx = sz[e[i].to] , hs[x] = e[i].to;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs2</span><span class="params">(ll x , ll topv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    idx[x] = ++id;</span><br><span class="line">    <span class="comment">// printf("id = %d\n",idx[x]);</span></span><br><span class="line">    top[x] = topv ;</span><br><span class="line">    v[idx[x]] = val[x];</span><br><span class="line">    <span class="keyword">if</span>(!hs[x])  <span class="keyword">return</span>;</span><br><span class="line">    dfs2(hs[x],topv);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = head[x] ; i ; i = e[i].next)</span><br><span class="line">        <span class="keyword">if</span>(e[i].to != hs[x] &amp;&amp; e[i].to != f[x])</span><br><span class="line">            dfs2(e[i].to , e[i].to);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pushdown</span><span class="params">(ll node , ll ln , ll rn)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(tag[node])</span><br><span class="line">    &#123;</span><br><span class="line">        tag[ls(node)] += tag[node]  , tag[rs(node)] += tag[node];</span><br><span class="line">        tree[ls(node)] += tag[node] * ln , tree[rs(node)] += tag[node] * rn;</span><br><span class="line">        tag[node] = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">(ll l , ll r , ll node)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(l == r) &#123;tree[node] = v[l];<span class="keyword">return</span>;&#125;</span><br><span class="line">    ll m = l + r &gt;&gt; <span class="number">1</span>;</span><br><span class="line">    build(l , m , ls(node));</span><br><span class="line">    build(m + <span class="number">1</span> , r , rs(node));</span><br><span class="line">    pushup(node);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">query</span><span class="params">(ll L , ll R , ll l , ll r , ll node)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(L &lt;= l &amp;&amp; r &lt;= R) <span class="keyword">return</span> tree[node];</span><br><span class="line">    ll m = l + r &gt;&gt; <span class="number">1</span> , ans = <span class="number">0</span>;</span><br><span class="line">    pushdown(node , m - l + <span class="number">1</span> , r - m);</span><br><span class="line">    <span class="keyword">if</span>(L &lt;= m) ans += query(L , R , l , m , ls(node)) ;</span><br><span class="line">    <span class="keyword">if</span>(R &gt; m)  ans += query(L , R , m + <span class="number">1</span> , r , rs(node));</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(ll L , ll R , ll l , ll r , ll node , ll v)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(L &lt;= l &amp;&amp; r &lt;= R)</span><br><span class="line">    &#123;</span><br><span class="line">        tree[node] += (r - l + <span class="number">1</span>) * v;</span><br><span class="line">        tag[node] += v;</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    ll m = l + r &gt;&gt; <span class="number">1</span>;</span><br><span class="line">    pushdown(node , m - l + <span class="number">1</span> , r - m);</span><br><span class="line">    <span class="keyword">if</span>(L &lt;= m) update(L , R , l , m , ls(node) , v);</span><br><span class="line">    <span class="keyword">if</span>(R &gt; m)  update(L , R , m + <span class="number">1</span> , r , rs(node) , v);</span><br><span class="line">    pushup(node);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">qLink</span><span class="params">(ll x , ll y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ll ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(top[x] != top[y])</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(dep[top[x]] &lt; dep[top[y]]) <span class="built_in">std</span>::swap(x,y);</span><br><span class="line">        ans += query(idx[top[x]] , idx[x] , <span class="number">1</span> , n , <span class="number">1</span>) ;</span><br><span class="line">        x = f[top[x]];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(dep[x] &lt; dep[y]) <span class="built_in">std</span>::swap(x,y);</span><br><span class="line">    ans += query(idx[y],idx[x],<span class="number">1</span>,n,<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%lld%lld"</span>,&amp;n,&amp;m);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%lld"</span>,&amp;val[i]);</span><br><span class="line">    ll x , y , d;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt;= n<span class="number">-1</span>; ++i)</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%lld%lld"</span>,&amp;x,&amp;y) , add(x,y) , add(y,x);</span><br><span class="line">    dfs1(<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="comment">// puts("ok");</span></span><br><span class="line">    dfs2(<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="comment">// puts("ok");</span></span><br><span class="line">    build(<span class="number">1</span>,n,<span class="number">1</span>);</span><br><span class="line">    <span class="comment">// puts("ok");</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt;= m ; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> op;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;op);</span><br><span class="line">        <span class="keyword">if</span>(op == <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%lld%lld"</span>,&amp;x,&amp;d);</span><br><span class="line">            update(idx[x],idx[x],<span class="number">1</span>,n,<span class="number">1</span>,d);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(op == <span class="number">2</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%lld%lld"</span>,&amp;x,&amp;d);</span><br><span class="line">            update(idx[x] , idx[x] + sz[x] - <span class="number">1</span> , <span class="number">1</span> , n , <span class="number">1</span> , d);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%lld"</span>,&amp;x);</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,qLink(<span class="number">1</span>,x));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>上午模拟赛我最后40分钟去还水了100分（雾</p>
+<p>貌似300分的题随便拿280 ， 然而剩下20分是什么仙人掌倍增？？</p>
+<p>我们来看看T2与T3</p>
+<p><img src="Images/1538124982665.png" alt="1538124982665">样例输入 1<br>5 4 2<br>1 2 1<br>1 3 1<br>2 4 1<br>2 5 1<br>3 5<br>2 1</p>
+<p>样例输出 1<br>3<br>1</p>
+<p>样例输入 2<br>5 5 2<br>1 2 1</p>
+<p>2 1 1<br>1 3 1<br>2 4 1<br>2 5 1<br>3 5<br>2 1</p>
+<p>样例输出 2<br>3<br>1</p>
+<p>样例输入 3<br>9 10 2<br>1 2 1<br>1 4 1<br>3 4 1<br>2 3 1<br>3 7 1<br>7 8 2<br>7 9 2<br>1 5 3<br>1 6 4<br>5 6 1<br>1 9<br>5 7</p>
+<p>样例输出 3<br>5<br>6</p>
+<p><img src="Images/1538125041691.png" alt="1538125041691"></p>
+<p>作为一道0.1秒时限的题，显然中间的80分比较好拿。</p>
+<p>算法一：用 SPFA 对每个点求一次单源最短路，由于是稀疏图，所以一次 SPFA 的复杂度<br>O(M)。然后 O(1)回答询问。<br>时间复杂度：</p>
+<script type="math/tex; mode=display">
+O(NM)</script><p>期望得分：10 分。</p>
+<p>算法二：树上倍增法求 LCA。<br>这个是经典必备算法，不再赘述。<br>于是再算一下根到每个点的距离，于是就是 </p>
+<script type="math/tex; mode=display">
+dis[x]+dis[y]-2*dis[LCA(x,y)]</script><p>。<br>啥？这个算法你不知道= =？如果想进省队的话，你赶紧去学吧&gt;_&lt;<br>时间复杂度：</p>
+<script type="math/tex; mode=display">
+O((N+Q)logN)</script><p>期望得分：40 分。</p>
+<p>算法三：内向树上倍增法求 LCA 并计算路径长度。<br>先写个 DFS 找出来环，然后随便找环上一个点 P，顺时针遍历一遍环，求出环上各个点逆<br>时针走到它的距离。还可以顺便求出环长 len。<br>按照算法二的思路，倍增到环上之后，无非就有两种走法：继续走到 LCA、走环上另一边<br>的路径。前者 dfs 找环遍历时求过的，两个点逆时针到 P 的距离之差的绝对值，记为 dis，<br>后者就是 len-dis，这两个取 min 就好了。<br>时间复杂度：</p>
+<script type="math/tex; mode=display">
+O((N+Q)logN)</script><p>；期望得分：80 分。</p>
+<p>*算法四：SPFA+仙人掌上倍增法求 LCA。<br>先 DFS 找环，顺便求环长神马的，这个跟算法三一样。<br>然后找个根节点，跑一遍 SPFA 求单源最短路。。。<br>在得到的单源最短路树上构建倍增数组。。。<br>于是剩下的就跟算法三一样了……倍增时走到最后，如果到了环上类似处理就好了。<br>时间复杂度：O((N+Q)logN)；期望得分：100 分。<br>另外，算法四是去年国家集训队 2011 作业，杨天的题，有详细证明和题解，Bzoj 上也有。<br>前面三个算法都是弱化版，因为作为 noip 题，算法四仅占 10%的分数。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/树链剖分/" rel="tag"># 树链剖分</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/13/NO.-13/" rel="next" title="bef->NO.13">
+                <i class="fa fa-chevron-left"></i> bef->NO.13
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/17/NO.-19/" rel="prev" title="bef-> NO.19">
+                bef-> NO.19 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">RBZ</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">98</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">56</span>
+                    <span class="site-state-item-name">Tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#HAOI2015-树上操作"><span class="nav-number">1.</span> <span class="nav-text">[HAOI2015]树上操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目描述"><span class="nav-number">1.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入输出格式"><span class="nav-number">1.2.</span> <span class="nav-text">输入输出格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入输出样例"><span class="nav-number">1.3.</span> <span class="nav-text">输入输出样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#说明"><span class="nav-number">1.4.</span> <span class="nav-text">说明</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+    
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">RBZ</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.5.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+    
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
