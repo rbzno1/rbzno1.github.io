@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.5.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.5.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.5.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="后缀数组进阶height数组个人感觉，上面说的一大堆，都是为heightheight数组做铺垫的，heightheight数组才是后缀数组的精髓、 先说定义 $i$号后缀：从$i$开始的后缀 $lcp(x,y)$：字符串xx与字符串yy的最长公共前缀，在这里指xx号后缀与与yy号后缀的最长公共前缀 $height[i]$：$lcp(sa[i],sa[i−1])$，即排名为$i$的后缀与排名为$i−">
+<meta name="keywords" content="SA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Post 45">
+<meta property="og:url" content="http://yoursite.com/2019/01/18/2019.1.18/index.html">
+<meta property="og:site_name" content="RBZ&#39;s blog">
+<meta property="og:description" content="后缀数组进阶height数组个人感觉，上面说的一大堆，都是为heightheight数组做铺垫的，heightheight数组才是后缀数组的精髓、 先说定义 $i$号后缀：从$i$开始的后缀 $lcp(x,y)$：字符串xx与字符串yy的最长公共前缀，在这里指xx号后缀与与yy号后缀的最长公共前缀 $height[i]$：$lcp(sa[i],sa[i−1])$，即排名为$i$的后缀与排名为$i−">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/images/1556169-20181208141128558-1990234336.png">
+<meta property="og:image" content="http://yoursite.com/images/1556169-20181207093844516-833241206.png">
+<meta property="og:image" content="http://yoursite.com/images/1556169-20181207100434310-1494898146.png">
+<meta property="og:image" content="http://yoursite.com/images/1556169-20181207103646721-543188889.png">
+<meta property="og:image" content="http://yoursite.com/images/1556169-20181207110215674-387396067.png">
+<meta property="og:image" content="http://yoursite.com/images/1556169-20181207111046682-1484476427.png">
+<meta property="og:image" content="http://yoursite.com/images/1556169-20181207113839905-2092875958.png">
+<meta property="og:image" content="http://yoursite.com/images/1556169-20181207113850859-694870458.png">
+<meta property="og:image" content="http://yoursite.com/images/1556169-20181207131832939-100600716.png">
+<meta property="og:image" content="http://yoursite.com/images/1556169-20181207132519984-197232767.png">
+<meta property="og:image" content="http://yoursite.com/images/1556169-20181207132914841-144670335.png">
+<meta property="og:image" content="http://yoursite.com/images/1556169-20181207133314908-1247436353.png">
+<meta property="og:image" content="http://yoursite.com/images/1556169-20181207133705826-1959641113.png">
+<meta property="og:image" content="http://yoursite.com/images/1556169-20181207133927380-2040687543.png">
+<meta property="og:image" content="http://yoursite.com/images/1556169-20181207134355065-956457726.png">
+<meta property="og:image" content="http://yoursite.com/images/1556169-20181207134841873-784240579.png">
+<meta property="og:image" content="http://yoursite.com/images/1556169-20181207135558470-740085251.png">
+<meta property="og:image" content="http://yoursite.com/images/1556169-20181207140245001-1673148917.png">
+<meta property="og:image" content="http://yoursite.com/images/1556169-20181207093844516-833241206.png">
+<meta property="og:updated_time" content="2019-01-18T14:35:01.859Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Post 45">
+<meta name="twitter:description" content="后缀数组进阶height数组个人感觉，上面说的一大堆，都是为heightheight数组做铺垫的，heightheight数组才是后缀数组的精髓、 先说定义 $i$号后缀：从$i$开始的后缀 $lcp(x,y)$：字符串xx与字符串yy的最长公共前缀，在这里指xx号后缀与与yy号后缀的最长公共前缀 $height[i]$：$lcp(sa[i],sa[i−1])$，即排名为$i$的后缀与排名为$i−">
+<meta name="twitter:image" content="http://yoursite.com/images/1556169-20181208141128558-1990234336.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/01/18/2019.1.18/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Post 45 | RBZ's blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">RBZ's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">A OIer</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Suche</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/18/2019.1.18/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="RBZ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RBZ's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Post 45
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+		
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-01-18 00:00:00 / Updated at: 22:35:01" itemprop="dateCreated datePublished" datetime="2019-01-18T00:00:00+08:00">2019-01-18</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="后缀数组进阶"><a href="#后缀数组进阶" class="headerlink" title="后缀数组进阶"></a>后缀数组进阶</h1><h2 id="height数组"><a href="#height数组" class="headerlink" title="height数组"></a>height数组</h2><p>个人感觉，上面说的一大堆，都是为heightheight数组做铺垫的，heightheight数组才是后缀数组的精髓、</p>
+<p>先说定义</p>
+<p>$i$号后缀：从$i$开始的后缀</p>
+<p>$lcp(x,y)$：字符串xx与字符串yy的最长公共前缀，在这里指xx号后缀与与yy号后缀的最长公共前缀</p>
+<p>$height[i]$：$lcp(sa[i],sa[i−1])$，即排名为$i$的后缀与排名为$i−1$后缀的最长公共前缀</p>
+<p>$H[i]$：$height[rak[i]]$，即ii号后缀与它前一名的后缀的最长公共前缀</p>
+<p>性质：$H[i]⩾H[i−1]−1$</p>
+<p>看以下证明之前</p>
+<p>证明引自远航之曲大佬</p>
+<blockquote>
+<p>能够线性计算height[]的值的关键在于h<a href="height[rank[]]"></a>的性质，即h[i]&gt;=h[i-1]-1，下面具体分析一下这个不等式的由来。</p>
+<p>我们先把要证什么放在这：对于第i个后缀，设j=sa[rank[i] – 1]，也就是说j是i的按排名来的上一个字符串，按定义来i和j的最长公共前缀就是height[rank[i]]，我们现在就是想知道height[rank[i]]至少是多少，而我们要证明的就是至少是height[rank[i-1]]-1。</p>
+<p>好啦，现在开始证吧。</p>
+<p>首先我们不妨设第i-1个字符串（这里以及后面指的“第?个字符串”不是按字典序排名来的，是按照首字符在字符串中的位置来的）按字典序排名来的前面的那个字符串是第k个字符串，注意k不一定是i-2，因为第k个字符串是按字典序排名来的i-1前面那个，并不是指在原字符串中位置在i-1前面的那个第i-2个字符串。</p>
+<p>这时，依据height[]的定义，第k个字符串和第i-1个字符串的公共前缀自然是height[rank[i-1]]，现在先讨论一下第k+1个字符串和第i个字符串的关系。</p>
+<p>第一种情况，第k个字符串和第i-1个字符串的首字符不同，那么第k+1个字符串的排名既可能在i的前面，也可能在i的后面，但没有关系，因为height[rank[i-1]]就是0了呀，那么无论height[rank[i]]是多少都会有height[rank[i]]&gt;=height[rank[i-1]]-1，也就是h[i]&gt;=h[i-1]-1。</p>
+<p>第二种情况，第k个字符串和第i-1个字符串的首字符相同，那么由于第k+1个字符串就是第k个字符串去掉首字符得到的，第i个字符串也是第i-1个字符串去掉首字符得到的，那么显然第k+1个字符串要排在第i个字符串前面，要么就产生矛盾了。同时，第k个字符串和第i-1个字符串的最长公共前缀是height[rank[i-1]]，那么自然第k+1个字符串和第i个字符串的最长公共前缀就是height[rank[i-1]]-1。</p>
+<p>到此为止，第二种情况的证明还没有完，我们可以试想一下，对于比第i个字符串的字典序排名更靠前的那些字符串，谁和第i个字符串的相似度最高（这里说的相似度是指最长公共前缀的长度）？显然是排名紧邻第i个字符串的那个字符串了呀，即sa[rank[i]-1]。也就是说sa[rank[i]]和sa[rank[i]-1]的最长公共前缀至少是height[rank[i-1]]-1，那么就有height[rank[i]]&gt;=height[rank[i-1]]-1，也即h[i]&gt;=h[i-1]-1</p>
+</blockquote>
+<p>唯一有点不懂的就是为啥LCP一定是前面那个后缀而一定不是后面那个呢。。。</p>
+<p>然后我又认真读了一遍，发现前提是字典序排名更靠前的那些这个条件。。。在做题的过程中加深理解吧。</p>
+<h1 id="不同子串个数"><a href="#不同子串个数" class="headerlink" title="不同子串个数"></a>不同子串个数</h1><h2 id="题目背景"><a href="#题目背景" class="headerlink" title="题目背景"></a>题目背景</h2><p>因为NOI被虐傻了，蒟蒻的YJQ准备来学习一下字符串，于是它碰到了这样一道题：</p>
+<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给你一个长为N的字符串，求不同的子串的个数</p>
+<p>我们定义两个子串不同，当且仅当有这两个子串长度不一样 或者长度一样且有任意一位不一样。</p>
+<p>子串的定义：原字符串中连续的一段字符组成的字符串</p>
+<h2 id="输入输出格式"><a href="#输入输出格式" class="headerlink" title="输入输出格式"></a>输入输出格式</h2><p>输入格式：</p>
+<p>第一行一个整数N</p>
+<p>接下来一行N个字符表示给出的字符串</p>
+<p>输出格式：</p>
+<p>一行一个整数，表示不一样的子串个数</p>
+<h2 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h2><p>输入样例#1：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">5</span><br><span class="line">aabaa</span><br></pre></td></tr></table></figure>
+<p>输出样例#1：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">11</span><br></pre></td></tr></table></figure>
+<p>输入样例#2：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">aba</span><br></pre></td></tr></table></figure>
+<p>输出样例#2：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5</span><br></pre></td></tr></table></figure>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>请使用64位整数来进行输出</p>
+<p>（具体来说，C++和C选手请使用long long 类型，pascal选手请使用Int64）</p>
+<p>由于输入文件过大，请使用 高效的读入方法（具体的，c++和c选手请不要使用cin，pascal选手不需要管）</p>
+<p>对于30%的数据，N\le 1000<em>N</em>≤1000</p>
+<p>对于100%的数据，N\le 10^5<em>N</em>≤105</p>
+<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><p>考虑将子串按照所属后缀分类。</p>
+<p>枚举每个后缀，通过上述求出的Height数组我们可以知道每个后缀$i$之前的那些后缀与它的最大公共子串，这一部分之前被统计过了，所以对于这个后缀的$n-sa_i+1$个子串，有$Height_{rki}$个是重复的，</p>
+<p>减去累加答案即可。</p>
+<p>Code：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// luogu-judger-enable-o2</span></span><br><span class="line"><span class="comment">// luogu-judger-enable-o2</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 100005</span></span><br><span class="line"><span class="keyword">int</span> rk[maxn] , sa[maxn] , h[maxn] , pos[maxn] , c[maxn] , n , m, ct;</span><br><span class="line"><span class="keyword">char</span> s[maxn];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Sort</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt;= m ; ++i)	c[i] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt;= ct ; ++i)	++ c[rk[i]];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt;= m ; ++i) c[i] += c[i<span class="number">-1</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = ct ; i &gt;= <span class="number">1</span> ; --i) sa[c[rk[pos[i]]]--] = pos[i];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">getLCP</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> k = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt;= n ; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(k) --k;</span><br><span class="line">        <span class="keyword">int</span> cr = sa[rk[i]<span class="number">-1</span>];</span><br><span class="line">        <span class="keyword">while</span>(s[i+k] == s[cr+k]) ++k;</span><br><span class="line">        h[rk[i]] = k;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">SuffixSort</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    m = <span class="number">10000</span> , ct = n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt;= n ; ++i) rk[i] = s[i] , pos[i] = i;</span><br><span class="line">    Sort();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">1</span> ; k &lt;= n ; k &lt;&lt;= <span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        ct = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt;= k ; ++i) pos[++ct] = n - k + i;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt;= n ; ++i) <span class="keyword">if</span>(sa[i] &gt; k) pos[++ct] = sa[i] - k;</span><br><span class="line">        Sort();</span><br><span class="line">        <span class="built_in">std</span>::swap(pos,rk);</span><br><span class="line">        rk[sa[<span class="number">1</span>]] = ct = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span> ; i &lt;= n ; ++i)</span><br><span class="line">            rk[sa[i]] = (pos[sa[i<span class="number">-1</span>]] == pos[sa[i]] &amp;&amp; pos[sa[i<span class="number">-1</span>]+k] == pos[sa[i]+k]) ? ct : ++ct;</span><br><span class="line">        m = ct;</span><br><span class="line">        <span class="keyword">if</span>(m == n) <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    getLCP();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%s"</span>,s+<span class="number">1</span>);</span><br><span class="line">    SuffixSort();</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt;= n ; ++i)</span><br><span class="line">        ans += n + <span class="number">1</span> - sa[i] - h[i];</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>顺便放一下SAM的一些笔记（非正式）</p>
+<p>果按照普通的字典树来建造的话，是以下的图：</p>
+<p><img src="\images\1556169-20181208141128558-1990234336.png" alt="img"></p>
+<p>但是我们看着可以发现有很多很多点都是重复的，浪费了很多空间，而且我们看到每个点大部分只有一个儿子，我们就想到利用公共部分把空间压缩，即把某些重复的边删去，连接到别的子树，从而利用公共部分降低空间复杂度，同时我们还要保证新的做法的正确性，并且降低时间复杂度降到大概O(n)O(n)，为了解决这个问题，后缀自动机诞生了qwqqwq</p>
+<p>下图是后缀自动机成型样子（没显示failfail指针）：</p>
+<p><img src="\images\1556169-20181207093844516-833241206.png" alt="img"></p>
+<p> 后缀自动机是这样的:在后缀自动机中,为了节省空间,某个点有可能成为多个结点的儿子,可以保证在后缀自动机中遍历出来的所有字符串不会重复,而且刚好是原串s的所有子串。</p>
+<p> <strong>基本储存信息：</strong></p>
+<p>11、ch[N][26]ch[N][26]：基本的字典树；</p>
+<p>22、fail[N]fail[N]：指向上一个与当前节点等价的点</p>
+<p>33、len[N]len[N]：表示以当前点为终点的子串的长度</p>
+<p><strong>后缀自动机的性质：</strong></p>
+<p>11、从任意节点到任意节点结束的路径都是文本串T的子串。</p>
+<p>22、后缀自动机是一个根为rootroot的有向无环图</p>
+<p>33、任何一个从任意节点到达任意节点p的路径是从根节点到p节点最长路径的一个后缀</p>
+<p>……</p>
+<p><strong>算法流程：（假设要插入的字符为cc）</strong></p>
+<p>1、定义一个变量p=lastp=last； //lastlast为上一次的节点；</p>
+<p>2、定义一个变量np=++cntnp=++cnt  //cntcnt为节点编号（也可以理解为时间戳吧，反正差不多就是一种顺序），npnp为新添加的节点</p>
+<p>3、last=nplast=np；len[np]=len[p]+1len[np]=len[p]+1  //更新上次的节点以及新节点的长度</p>
+<p>4、循环判断：当pp点没有到cc的转移的话，ch[p][c]=npch[p][c]=np；即把pp点添加到cc的转移为npnp，并且pp点跳failfail指针，当pp点有到cc的转移时停止循环</p>
+<p>5、当此时pp点为00时，把npnp的failfail指针赋为11（因为根节点rootroot为11）</p>
+<p>6、否则的话，意味着此时的pp点有到cc的转移，我们定义q=ch[p][c]q=ch[p][c]</p>
+<p>7、当len[q]==len[p]+1len[q]==len[p]+1时，把fail[np]fail[np]赋为pp并退出即可（具体后面会详细讲）</p>
+<p>8、否则的话，我们定义一个新节点nq=++cntnq=++cnt，复制节点qq的chch数组，failfail指针给nqnq，len[nq]=len[p]+1len[nq]=len[p]+1，并且把npnp，qq的failfail指针赋为nqnq。循环跳pp点的failfail指针，每次当ch[p][c]==qch[p][c]==q时，ch[p][c]ch[p][c]赋为nqnq</p>
+<p>（看到这里时是会有点懵逼的，等会结合下文图解及分析一起看）</p>
+<p> 先贴这部分代码（方便以后使用）：</p>
+<p><a href="https://www.cnblogs.com/yexinqwq/p/10076929.html#" target="_blank" rel="noopener">+ View Code</a></p>
+<p>　　</p>
+<hr>
+<p><strong>强势图解开始！！！</strong></p>
+<p>首先，假设我们已经建立好了文本串TT的后缀自动机，现在要在后面插入字符xx，使自动机成为字符串TxTx的后缀自动机，那么我们先建立一个新节点npnp，并且找到上一个节点pp，循环判断如果pp没有xx儿子的话，那么就向npnp连一条xx的转移，pp点跳failfail指针，直到pp点到了虚拟节点00或者有向x的转移时，停止循环。如果pp点此时是因为有向x的转移而退出的循环，即p!=0。假设此时pp点向x的转移为qq节点，那么就会有以下两种情况：</p>
+<p> 1、len[q]=len[p]+1len[q]=len[p]+1</p>
+<p>我们因为想要压缩空间，那么就必须要共用已有的节点，下面是这种情况的图：</p>
+<p> <img src="\images\1556169-20181207100434310-1494898146.png" alt="img"></p>
+<p>那么我们先考虑从pp点连一条xx的转移到npnp，但是这样可行吗？我们可以看出如果这样连的话，qq点就没有办法到达了，也就是说p−&gt;q−&gt;npp−&gt;q−&gt;np这一字串将会被破坏，那么怎么办呢？我们考虑把qq当做是npnp（因为都是向xx的转移），也就是说，把qq也当做是TT的某个字串的结尾，把npnp的failfail指针指向qq，从而保证算法的正确性（即性质11）</p>
+<p>说到这可能大家会有疑问，如果我们不走pp节点就到了qq节点，那就不能保证到qq节点的都是TxTx的后缀了。其实len[p]=len[q]+1len[p]=len[q]+1就已经保证了经过了qq就必定经过了pp，如果不经过pp，那就只能从rootroot节点直接来了，为什么呢，我们运用反证法（转自某大佬）：</p>
+<p><strong>假设原命题不成立,那么就有两种可能:（补充：现在文本串为TxTx，也就是说xx是终点）</strong></p>
+<p><strong>一.当前的xx字符,之前没有出现过.这样的话,有xx字符的子串必然是后缀,与假设矛盾.</strong></p>
+<p><strong>二.当前的xx字符,之前已经出现过.这样的话,有xx字符而不是后缀的子串必然与之前的某个代表字符xx的结点连接,而不是与当前的xx点连接,否则后缀自动机的性质33早就被破坏了,故也与假设矛盾。</strong></p>
+<p><strong>那么结束后的图是这样的（红色虚边为failfail指针，实线黑边为chch数组）：</strong></p>
+<p><strong><img src="\images\1556169-20181207103646721-543188889.png" alt="img"></strong></p>
+<p>2、len[q]&gt;lenp[p]+1len[q]&gt;lenp[p]+1</p>
+<p> 这种情况就是下图：</p>
+<p><img src="\images\1556169-20181207110215674-387396067.png" alt="img"></p>
+<p>也面临着qq点能不能当做npnp点的问题。但是这种情况与第一种情况的区别在于：第一种情况pp，qq中间不会夹杂其他的字符，而这种情况pp，qq中间是会有其他字符的，我们就不能保证到达qq节点的一定是TxTx的后缀了。</p>
+<p>那么我们考虑能不能把这种情况能不能转化为第一种情况呢？答案是肯定的，我们考虑新建一个节点nqnq，使得len[nq]=len[p]+1len[nq]=len[p]+1，这样的话我们就转化为了第一种问题，那么我们把节点qq所有东西复制给新节点nqnq的话，就让nqnq充当第一种问题中的qq，那么我们把qq，npnp的failfail指针赋值为nqnq，nqnq的failfail指针为pp，同时还必须记住让pp节点跳failfail指针，把所有连向qq节点的边都连向nqnq（因为nqnq节点代替了qq节点）</p>
+<p>操作完成后就是下图：</p>
+<p><img src="\images\1556169-20181207111046682-1484476427.png" alt="img"></p>
+<hr>
+<p><strong>图解acabb的后缀自动机过程，建议和代码一起理解！</strong></p>
+<p><strong>（没有动图。。。动图太快了不好理解其实是本人不会）</strong></p>
+<p>1、插入aa字符：</p>
+<p><img src="\images\1556169-20181207113839905-2092875958.png" alt="img"></p>
+<p>因为pp一开始等于11（根节点），而所以根节点没有向aa的转移，因此向22连一条向aa的转移，然后跳failfail指针，然而fail[1]=0fail[1]=0，也就是指向了虚拟节点，所以fail[2]=1fail[2]=1（指向根节点）</p>
+<p>2、插入cc字符：</p>
+<p> <img src="\images\1556169-20181207113850859-694870458.png" alt="img"></p>
+<p>建立新的节点33，pp节点为上一个节点22，pp没有向cc的转移，因此添加一个向cc的转移指向33，pp点跳failfail指针到了11,11节点也没有向cc的转移，也添加一个向cc的转移到33，跳failfail指针到00（虚拟节点），所以npnp节点的failfail指针指向11（根节点）</p>
+<p><strong>3、（重点）插入aa字符</strong></p>
+<p><img src="\images\1556169-20181207131832939-100600716.png" alt="img"></p>
+<p>这种情况就是len[q]=len[p]+1len[q]=len[p]+1的情况了，首先pp为33节点，然而现在pp节点没有向aa的转移，于是向npnp节点连一条aa的转移</p>
+<p>并且pp点跳failfail指针到11节点，如下图：</p>
+<p><img src="\images\1556169-20181207132519984-197232767.png" alt="img"></p>
+<p>而这时候我们发现pp节点有aa的转移指向22号节点， 并且满足上面所述的第一种情况即len[q]=len[p]+1len[q]=len[p]+1，所以直接把qq节点当做npnp节点</p>
+<p>把fail[np]fail[np]赋值为qq，即下图：</p>
+<p><img src="\images\1556169-20181207132914841-144670335.png" alt="img"></p>
+<p>4、插入bb字符</p>
+<p><img src="\images\1556169-20181207133314908-1247436353.png" alt="img"></p>
+<p>pp节点没有bb的转移，于是pp点向npnp连一条bb的转移</p>
+<p>pp点跳failfail指针：</p>
+<p><img src="\images\1556169-20181207133705826-1959641113.png" alt="img"></p>
+<p>我们发现pp点没有bb的转移，于是pp点向npnp连一条bb的转移</p>
+<p>pp点跳failfail指针：</p>
+<p><img src="\images\1556169-20181207133927380-2040687543.png" alt="img"></p>
+<p>最后pp点到了虚拟指针，所以将fail[np]fail[np]赋值为根节点11，完成后如下图：</p>
+<p><img src="\images\1556169-20181207134355065-956457726.png" alt="img"></p>
+<p><strong>5、（重点）插入bb字符：</strong></p>
+<p>这种情况就是第二种情况:len[q]&gt;len[p]+1len[q]&gt;len[p]+1</p>
+<p><img src="\images\1556169-20181207134841873-784240579.png" alt="img"></p>
+<p>首先我们发现pp节点没有bb的转移，于是添加一个到bb的转移为npnp</p>
+<p>pp跳failfail指针到rootroot：</p>
+<p><img src="\images\1556169-20181207135558470-740085251.png" alt="img"></p>
+<p>我们发现pp点有bb的转移到qq节点，并且满足情况22（len[q]&gt;len[p]+1len[q]&gt;len[p]+1），复制qq点的信息到nqnq点（因为它要代替qq节点），即fail[nq]=fail[q]fail[nq]=fail[q]，并且nqnq也像qq一样连一条bb的转移到npnp，同时把qq，npnp的failfail指针赋值为nqnq</p>
+<p>最后我们还要按照下图一样，pp点跳failfail指针把所有连向qq的转移都连向nqnq（nqnq代替了qq），如下图：</p>
+<p><img src="\images\1556169-20181207140245001-1673148917.png" alt="img"></p>
+<p>最终acabbacabb的后缀自动机就完成啦！</p>
+<p>把failfail指针去掉就是下图：</p>
+<p><img src="/images/1556169-20181207093844516-833241206.png" alt="img"></p>
+<hr>
+<p><strong>后缀自动机的应用（借鉴了某大佬）：</strong></p>
+<p>1、检查字符串pp是不是文本串TT的子串</p>
+<blockquote>
+<p>给定一个文本串TT，求字符串pp是不是TT的子串</p>
+</blockquote>
+<p>首先，我们对文本串TT建立后缀自动机，然后在自动机上直接按照pp的每个字符来转移，如果转移失败的话，说明pp不是TT的子串，这些都是因为后缀自动机满足性质11。</p>
+<p> 2、不同的子串</p>
+<blockquote>
+<p>给你一个文本串，求一共有多少子串</p>
+</blockquote>
+<p>后缀自动机性质22，因为后缀自动机是一个有向无环图，所以我们可以考虑在上面简单的dpdp，根据性质22，任何子串都会是后缀自动机上的一段路径（包括长度为00的路径），所以我们令f[i]f[i]为ii节点不同路径的条数，即从ii节点开始有多少不同子串，状态转移方程就是：f[u]=∑v:(u,v)∈Ef[v]+1f[u]=∑v:(u,v)∈Ef[v]+1</p>
+<p>那么我们最后的答案的话就是f[1]−1f[1]−1因为要去掉根节点长度为00的串</p>
+<p>如果要考虑按字典序输出的话，那么就用一个手写栈来写，每次走字典序小的边，走到一个点就输出当前的栈内元素，递归后要回溯！</p>
+<p>3、字典序第kk大的子串</p>
+<p>其实这个问题是基于上面这个问题的，我们既然已经求出了每个点不同路径的条数，那么我们就可以选择性的走k小路径</p>
+<p>4、字典序最小循环移位</p>
+<blockquote>
+<p>给定一个文本串TT，每次操作可以把最左边的字符移到最右边，请求出字典序最小的循环移位</p>
+</blockquote>
+<p>这个问题的话其实做多了就知道了，我们以T+TT+T来建立后缀自动机，这样的话后缀自动机就会包含每个循环移位的路径，那么我们直接贪心来找字典序最小就行了</p>
+<p><a href="https://www.luogu.org/problemnew/show/P1368" target="_blank" rel="noopener">【模板】循环移位</a></p>
+<p>5、求两串中的最长公共子串</p>
+<blockquote>
+<p>给定两个字符串为TT和SS，求出它们的最长公共子串</p>
+</blockquote>
+<p>对于这个问题，我们对字符串TT建立后缀自动机，对于SS的每个前缀，在自动机里转移状态，定义一个ll变量，一个pospos变量，分别表示现在匹配的长度，以及现在的位置。我们每匹配成功一次，ll自增一，直到没有状态转移的时候，我们就跳failfail指针，而此时ll就要赋值为len[pos]len[pos]，直到pospos指向虚拟节点（也就是失配，此时l=0l=0）或匹配完成，而答案就是ll的最大值</p>
+<p> 6、出现次数</p>
+<blockquote>
+<p>对于一个给定的文本串 $T$，有多组询问，每组询问给一个模式串 pp，回答模式串 pp 在字符串 $T$ 中作为子串出现了多少次</p>
+</blockquote>
+<p>我们为文本串TT建立后缀自动机，为每个节点定义一个变量sizesize，初始化为11，根节点与复制节点nq除外，那么我们对每个节点做如下操作：size[fail[pos]]+=size[pos]size[fail[pos]]+=size[pos]，含义是当节点pospos出现了size[pos]size[pos]次，那么以它为后缀的点也会出现这么多次。最后查询size[t]size[t]，tt就是模式串的状态，查询不到则为00</p>
+<hr>
+<p> <strong>练习：</strong></p>
+<p><a href="https://www.luogu.org/problemnew/show/P3804" target="_blank" rel="noopener">P3804</a><a href="https://www.luogu.org/problemnew/show/P3804" target="_blank" rel="noopener">【模板】后缀自动机</a></p>
+<p>没什么好说的，就是模板</p>
+<p><a href="https://www.luogu.org/problemnew/show/P3649" target="_blank" rel="noopener">P3649[APIO2014]回文串</a></p>
+<p>要用用上面的知识点，灵活运用吧qwqqwq，相信你会举一反三的</p>
+<hr>
+<p>今天晚上又读了读lrj的紫书上关于SAM（其实是广义自动机）的介绍，感觉对SAM又了解了一点，对于它的各种神器性质和思想也理解的更多了。</p>
+<p>上面那些杂乱的笔记是我偶然翻到一个blog关于一点一点模拟的，可以增加感性理解，不过对于这个高级算法更重要的还是理解其各种性质才能学会构造（吧）</p>
+<p>明天一天一定要学会SAM！！！</p>
+<hr>
+<p>看了道很简单的线段树维护最大字段和，连代码都懒得写了。。</p>
+<p>简述方法：</p>
+<p>分情况讨论，对于当前区间，如果我们想通过左右区间快速合并当前区间信息，需要维护左端开始的的最大子区间，右边开始的，以及当前答案（即左右最大或左边的右最大和右边的左最大合并来更新答案）</p>
+<p>参考Code：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    s(p)=s(p&lt;&lt;<span class="number">1</span>)+s(p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>);<span class="comment">//该区间和为左区间和+右区间和</span></span><br><span class="line">    lm(p)=max(s(p&lt;&lt;<span class="number">1</span>)+lm(p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>),lm(p&lt;&lt;<span class="number">1</span>));<span class="comment">//左区间最大子段和 或 左区间和+右区间左子段和</span></span><br><span class="line">    rm(p)=max(s(p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>)+rm(p&lt;&lt;<span class="number">1</span>),rm(p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>));<span class="comment">//右区间最大子段和 或 右区间和+左区间右子段和</span></span><br><span class="line">    m(p)=max(max(m(p&lt;&lt;<span class="number">1</span>),m(p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>)),rm(p&lt;&lt;<span class="number">1</span>)+lm(p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>));<span class="comment">//左区间最大子段和 或 右区间最大子段和 或 左区间右子段和+右区间左子段和</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>还说今天之所以什么都没干成的原因是这个笔记本又卡死了啊啊啊啊。</p>
+<p>幸好找到了问题所在，把win10那臭名远扬的自动更新关掉了。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SA/" rel="tag"># SA</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/13/2019.1.13/" rel="next" title="Post 44">
+                <i class="fa fa-chevron-left"></i> Post 44
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">RBZ</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">99</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">57</span>
+                    <span class="site-state-item-name">Tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#后缀数组进阶"><span class="nav-number">1.</span> <span class="nav-text">后缀数组进阶</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#height数组"><span class="nav-number">1.1.</span> <span class="nav-text">height数组</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#不同子串个数"><span class="nav-number">2.</span> <span class="nav-text">不同子串个数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目背景"><span class="nav-number">2.1.</span> <span class="nav-text">题目背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题目描述"><span class="nav-number">2.2.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入输出格式"><span class="nav-number">2.3.</span> <span class="nav-text">输入输出格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入输出样例"><span class="nav-number">2.4.</span> <span class="nav-text">输入输出样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#说明"><span class="nav-number">2.5.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题解"><span class="nav-number">2.6.</span> <span class="nav-text">题解</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+    
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">RBZ</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.5.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+    
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
